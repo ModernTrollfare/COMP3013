@@ -1,12 +1,12 @@
 <?php
 	//$connection = mysqli_connect('localhost','foo','bar','Example') or die('Error connecting to MySQL server.'. mysql_error());
-	$usertype = $_POST["UserType"]
+	$usertype = $_POST["UserType"];
 	$user = array();
 	$user["UserID"] = $_POST["UserID"];
 	$user["Password"] = $_POST["Password"];
 	if($usertype == "-1"){
 		$message = "Please Select your User Type.";
-		header('Location: login.php?message='.$message);
+		header('Location: index.php?message='.$message);
 		exit;
 	}
 /*	if($usertype == "0")
