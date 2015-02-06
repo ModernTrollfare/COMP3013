@@ -16,7 +16,7 @@
 	$result = mysqli_query($connection,$query) or die('Error making select users query' . mysql_error());
 	if (!$result){
 		$message = "Your Login Credentials Are Incorrect. Check it again!";
-		header('Location: login.php?message='.$message);
+		header('Location: index.php?message='.$message);
 		exit;
 	}
 	else{*/
