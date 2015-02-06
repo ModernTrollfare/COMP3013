@@ -7,7 +7,7 @@
 	if($usertype == "-1"){
 		$message = "Please Select your User Type.";
 		header('Location: index.php?message='.$message);
-		exit;
+		exit();
 	}
 /*	if($usertype == "0")
 		$query = "SELECT * FROM ADMINS WHERE admin_id =".$user["UserID"]." AND pwd = ".$user["Password"];
