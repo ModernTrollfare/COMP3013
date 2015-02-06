@@ -63,6 +63,11 @@
               </li> -->
             </ul>
             <form class="navbar-form pull-right" action="login.php" method="POST">
+              <select class="span2" name="UserType">
+                  <option value="-1">Select...</option>
+                  <option value="0">Teacher</option>
+                  <option value="1">Student</option>
+              </select>
               <input class="span2" type="text" placeholder="UserID" name="UserID" required="" autofocus="">
               <input class="span2" type="password" placeholder="Password" name="Password" required="">
               <button type="submit" class="btn">Sign in</button>
