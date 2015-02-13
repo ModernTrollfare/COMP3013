@@ -18,7 +18,7 @@
 		$query = "SELECT * FROM ADMINS WHERE admin_id ='$uid' AND pwd = '$upwd'";
 		//$query = "SELECT userid, username FROM tuser WHERE username = '$user_username' AND password = SHA('$user_password')";
 	else
-		$query = "SELECT * FROM ADMINS WHERE student_id ='$uid' AND pwd = '$upwd'";
+		$query = "SELECT * FROM STUDENTS WHERE student_id ='$uid' AND pwd = '$upwd'";
 	$result = mysqli_query($connection,$query) or die('Error making select users query' . mysqli_error($connection));
 	if (mysqli_num_rows($result) != 1){
 		$_SESSION['errors'] = array("Your Login Credentials Are Incorrect.");
@@ -27,12 +27,16 @@
 		exit;
 	}
 	else{
-		session_unset();
 		$_SESSION['user'] = $user["UserID"];
 		$_SESSION['password'] = $user["Password"];
 		$_SESSION['usertype'] = $usertype;
 		$json = json_encode($user);
 		setcookie("uinf", $json, time()+(60*60*6));
-		header('Location: logged_in.html'); 
+		if($usertype == '0'){
+			header('Location: AdminPortol/workspaceForAdmin.html');
+		}
+		else{
+			header('Location: StudentPortol/student_main.html');
+		}
 	}
 ?>
