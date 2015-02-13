@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <?php session_start()
+    ?>
     <meta charset="utf-8">
     <title>Bootstrap, from Twitter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,10 +81,15 @@
     </div>
 
     <div class="container">
-        <?php $message = ""; ?>
-        <p><?php print($message); ?></p>
+
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
+            <?php if (isset($_SESSION['errors'])){
+                    foreach($_SESSION['errors'] as $error){
+                        print($error."\n");
+                    }
+            }
+            ?>
         <h1>Virtual Learning Environment</h1>
         <h2>Peer Assessment</h2>
         <p>Hi. This is the Home Page.</p>
