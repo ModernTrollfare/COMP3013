@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php session_start()
+    <?php 
+        session_start();
+        if(isset($_COOKIE['uinf'])){
+            $cookie = $_COOKIE['uinf'];
+            $cookie = stripslashes($cookie);
+            $user = json_decode($cookie, true);   
+            session_unset();
+            $_SESSION['user'] = $user["UserID"];
+            $_SESSION['password'] = $user["Password"];
+            $_SESSION['usertype'] = $usertype;
+            $json = json_encode($user);
+            setcookie("uinf", $json, time()+(60*60*6));
+            header('Location: logged_in.html'); 
+        }
     ?>
     <meta charset="utf-8">
     <title>Bootstrap, from Twitter</title>
@@ -86,10 +99,14 @@
       <div class="hero-unit">
             <?php if (isset($_SESSION['errors'])){
                     foreach($_SESSION['errors'] as $error){
+            ?>
+            <p font color= "#FF0000">
+            <?php
                         print($error."\n");
                     }
             }
             ?>
+            </p>
         <h1>Virtual Learning Environment</h1>
         <h2>Peer Assessment</h2>
         <p>Hi. This is the Home Page.</p>
