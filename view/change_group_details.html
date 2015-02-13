@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Change Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -14,11 +14,20 @@
         padding-top: 60px;
         padding-bottom: 40px;
       }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
     </style>
     <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- Custom styles for login template -->
-    <link href="../lib/bootstrap/css/signin.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -62,59 +71,59 @@
                 </ul>
               </li> -->
             </ul>
-            <form class="navbar-form pull-right" action="login.php" method="POST">
-              <select class="span2" name="UserType">
-                  <option value="-1">Select...</option>
-                  <option value="0">Teacher</option>
-                  <option value="1">Student</option>
-              </select>
-              <input class="span2" type="text" placeholder="UserID" name="UserID" required="" autofocus="">
-              <input class="span2" type="password" placeholder="Password" name="Password" required="">
-              <button type="submit" class="btn">Sign in</button>
+            <form class="navbar-form pull-right">
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
+              <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container">
-
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Virtual Learning Environment</h1>
-        <h2>Peer Assessment</h2>
-        <p>Hi. This is the Home Page.</p>
-        <h3 style="color:red">AND NOTHING ELSE IS WORKING</h3>
-        <img src="../resources/pic/HANDYMAN-IMAGE.jpg" alt="Maintaining"> 
-        <!-- s -->
-      </div>
-
-      <!-- Example row of columns -->
-      <!-- <div class="row">
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-       </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-      </div> -->
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li><a href="student_main.html">Main Page</a></li>
+              <li class="nav-header">Assignments</li>
+              <li><a href="upload_assignment.html">Uploading</a></li>
+              <!-- <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li> -->
+              <li class="nav-header">Assessments</li>
+              <li><a href="view_allocated_assignments.html">Viewing Allocated Assignments</a></li>
+              <li><a href="view_grades_and_comments.html">Viewing Grades and Comments from Others</a></li>
+              <!-- <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li> -->
+              <li class="nav-header">Personal and Group Details</li>
+              <li><a href="change_group_details.html">Changing Group Details</a></li>
+              <li class="active"><a href="change_password.html">Changing Personal Password</a></li>
+              <!-- <li><a href="#">Link</a></li> -->
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="hero-unit">
+            <h3>Change Groups Details</h3>
+            <p><input class="span6" type="text" placeholder="Please Type in Your Group New Name" name="group_name"></p>
+            <p><input class="span6" type="text" placeholder="Please Type in Your Group New Description" name="group_description"></p>
+            <p><a href="#" class="btn btn-primary btn-large">Submit </a></p>
+          </div>
+          
+          
+          
+        </div><!--/span-->
+      </div><!--/row-->
 
       <hr>
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Peer Assessment System</p>
       </footer>
 
-    </div> <!-- /container -->
+    </div><!--/.fluid-container-->
 
     <!-- Le javascript
     ================================================== -->
