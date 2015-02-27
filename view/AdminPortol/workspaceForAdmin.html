@@ -59,7 +59,7 @@
               <li><a href="../about.html">About</a></li>
             </ul>
             <form class="navbar-form pull-right" action="../logout.php">
-              <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['user']);?></span>
               <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->
