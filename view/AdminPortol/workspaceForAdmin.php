@@ -3,10 +3,10 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <?php session_start();
         if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
-            $_SESSION['errors'] = array("Please Login before proceeding.")
+            $_SESSION['errors'] = array("Please Login before proceeding.");
             header("Location: ../index.php");
         }
-        if($_SESSION['Usertype'] != $N){
+        if($_SESSION['Usertype'] != '1'){
             print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
             header('Refresh: 5; URL= ../index.php');
         }
@@ -21,12 +21,12 @@
     <link href="../../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
+      }
         padding-top: 60px;
         padding-bottom: 40px;
       }
       .sidebar-nav {
         padding: 9px 0;
-      }
 
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
