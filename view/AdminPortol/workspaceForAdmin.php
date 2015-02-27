@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <?php session_start(); 
-    ;?>
+    <?php session_start();
+        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
+            $_SESSION['errors'] = array("Please Login before proceeding.")
+            header("Location: ../index.php");
+        }
+        if($_SESSION['Usertype'] != $N){
+            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
+            header('Refresh: 5; URL= ../index.php');
+        }
+    ?>
     <meta charset="utf-8">
     <title>Administrator Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,6 +82,7 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
+              <li><a href="workspaceForAdmin.php">Main Page</a></li>
               <li class="nav-header">Student</li>
               <li class="active"><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>

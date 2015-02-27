@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+  <?php session_start();
+        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
+            $_SESSION['errors'] = array("Please Login before proceeding.")
+            header("Location: ../index.php");
+        }
+        if($_SESSION['Usertype'] != $N){
+            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
+            header('Refresh: 5; URL= ../index.php');
+        }
+    ?>
   <head>
     <meta charset="utf-8">
     <title>Change Password</title>
@@ -98,8 +108,8 @@
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.php">Changing Group Details</a></li>
-              <li class="active"><a href="change_password.php">Changing Personal Password</a></li>
+              <li class="active"<a href="change_group_details.php">Changing Group Details</a></li>
+              <li><a href="change_password.php">Changing Personal Password</a></li>
               <!-- <li><a href="#">Link</a></li> -->
             </ul>
           </div><!--/.well -->

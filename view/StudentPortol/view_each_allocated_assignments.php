@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+  <?php session_start();
+        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
+            $_SESSION['errors'] = array("Please Login before proceeding.")
+            header("Location: ../index.php");
+        }
+        if($_SESSION['Usertype'] != $N){
+            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
+            header('Refresh: 5; URL= ../index.php');
+        }
+    ?>
   <head>
     <meta charset="utf-8">
     <title>View Assignment</title>
