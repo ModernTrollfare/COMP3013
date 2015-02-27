@@ -113,7 +113,7 @@
                     while($row = mysql_fetch_array($results)) {
                       echo "<tr><td>" . $row['student_id'] . "</td><td>" . $row['name'] . "</td>";
                       $studentID = $row['student_id'];
-                      print($studentID);
+                      //print($studentID);
                       $groups = mysql_query("SELECT group_id FROM GROUPS WHERE student_1 = '$studentID' OR student_2 = '$studentID' OR student_3 = '$studentID'");
                       if(mysql_num_rows($groups)==1){
                         $group=mysql_fetch_row($groups);
