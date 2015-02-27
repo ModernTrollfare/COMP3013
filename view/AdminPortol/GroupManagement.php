@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <?php session_start();
+        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
+            $_SESSION['errors'] = array("Please Login before proceeding.");
+            header("Location: ../index.php");
+            exit();
+        }
+        if($_SESSION['Usertype'] != '0'){
+            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
+            header('Refresh: 5; URL= ../index.php');
+            exit();
+        }
+    ?>
     <meta charset="utf-8">
-    <title>Student Management</title>
+    <title>View Groups</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -72,11 +84,12 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
+              <a href="student_main.php">Main Page</a>
               <li class="nav-header">Student</li>
-              <li class="active"><a href="StudentManagement.php">View Students</a></li>
+              <li><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
-              <li><a href="GroupManagement.php">View Groups</a></li>
+              <li class="active"><a href="GroupManagement.php">View Groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
               <li class="nav-header">My Profile</li>
@@ -90,126 +103,43 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Group ID</th>
+                  <th>Student 1</th>
+                  <th>Student 2</th>
+                  <th>Student 3</th>
+                  <th>Assignment Submitted</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
+                <?php
+                    $connect = mysql_connect("localhost","toor", "toor");
+                    if (!$connect) {
+                        die(mysql_error());
+                    }
+                    mysql_select_db("comp3013");
+                    
+                    $results = mysql_query("SELECT * FROM GROUPS");
+                    while($row = mysql_fetch_array($results)) {
+                      $student1 = $row['student_1'];
+                      $student2 = $row['student_2'];
+                      $student3 = $row['student_3'];
+                      $studentName1 = mysql_fetch_row(mysql_query("SELECT name FROM students WHERE student_id = '$student1'"));
+                      $studentName2 = mysql_fetch_row(mysql_query("SELECT name FROM students WHERE student_id = '$student2'"));
+                      $studentName3 = mysql_fetch_row(mysql_query("SELECT name FROM students WHERE student_id = '$student3'"));
+                      echo "<tr><td>" . $row['group_id'] . "</td><td>" . $studentName1[0]. "</td><td>" . 
+                            $studentName2[0] . "</td><td>" . $studentName3[0] . "</td>";
+                      $groupID = $row['group_id'];
+                      //print($studentID);
+                      $report = mysql_query("SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
+                      if(mysql_num_rows($report)==1){
+                        echo "<td>&#10004</td></tr>";
+                      }else {
+                        echo "<td></td></tr>";
+                      }
+                    }
+                    mysql_close();
+                ?>
+
               </tbody>
             </table>
           </div>

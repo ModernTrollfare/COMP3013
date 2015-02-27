@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+  <?php session_start();
+        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
+            $_SESSION['errors'] = array("Please Login before proceeding.");
+            header("Location: ../index.php");
+            exit();
+        }
+        if($_SESSION['Usertype'] != '1'){
+            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
+            header('Refresh: 5; URL= ../index.php');
+            exit();
+        }
+    ?>
   <head>
     <meta charset="utf-8">
     <title>View Assignments</title>
@@ -112,31 +124,30 @@
             <!-- <p><a href="#" class="btn btn-primary btn-large">Upload </a></p> -->
           </div>
 
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
-          </div>
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
-          </div>
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
-          </div>
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
-          </div>
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
-          </div>
+          <?php
+            session_start();
+            $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+
+            $gid = '123';
+
+            $query = "SELECT REPORTS.group_id, ASSESMENTS.content FROM ASSESMENTS, REPORTS WHERE ASSESMENTS.report_id = REPORTS.report_id AND ASSESMENTS.group_id ='$gid'";
+            $result = mysqli_query($connection, $query)
+              or die('Error Query'.mysql_error());
+
+            $row = mysqli_fetch_array($result);
+            
+            while ($row != NULL) {
+              echo "<div class="hero-unit">
+                          <h3>Group $row['group_id']</h3>
+                          <p>substr($row['content'], 0 , 99)...</p>
+                          <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
+                        </div>";
+              $row = mysqli_fetch_array($result);
+            };
+            
+
+            mysqli_close($connection);
+          ?>
           
           
         </div><!--/span-->

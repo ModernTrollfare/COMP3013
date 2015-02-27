@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php session_start(); ?>
+    <?php session_start();
+        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
+            $_SESSION['errors'] = array("Please Login before proceeding.");
+            header("Location: ../index.php");
+            exit();
+        }
+        if($_SESSION['Usertype'] != '0'){
+            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
+            header('Refresh: 5; URL= ../index.php');
+            exit();
+        }
+    ?>
     <meta charset="utf-8">
     <title>Change Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,6 +84,7 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
+              <a href="workspaceForAdmin.php">Main Page</a>
               <li class="nav-header">Student</li>
               <li ><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>
@@ -88,6 +100,7 @@
         <div class="span9">
           <div class="hero-unit">
             <h3>Change Personal Password</h3>
+<<<<<<< HEAD
                 <?php if (isset($_SESSION['errors'])){
                     foreach($_SESSION['errors'] as $error){
                         echo '<p font color= "#FF0000">';
@@ -95,6 +108,8 @@
                     }
             }
               ?>
+=======
+>>>>>>> 2db9ffec7772e69ef7459bdcdf682a7183a9b338
             <form action="../changepw.php" method="POST">
                 <p><input class="span6" type="password" placeholder="Please Type in Your Old Password" name="OldPassword" required=""></p>
                 <p><input class="span6" type="password" placeholder="Please Type in Your New Password" name="NewPassword1" required=""></p>

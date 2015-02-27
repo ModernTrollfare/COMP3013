@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+  <?php session_start();
+        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
+            $_SESSION['errors'] = array("Please Login before proceeding.");
+            header("Location: ../index.php");
+            exit();
+        }
+        if($_SESSION['Usertype'] != '1'){
+            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
+            header('Refresh: 5; URL= ../index.php');
+            exit();
+        }
+    ?>
   <head>
     <meta charset="utf-8">
     <title>View Grades and Comments</title>
