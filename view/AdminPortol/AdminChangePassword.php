@@ -100,7 +100,6 @@
         <div class="span9">
           <div class="hero-unit">
             <h3>Change Personal Password</h3>
-<<<<<<< HEAD
                 <?php if (isset($_SESSION['errors'])){
                     foreach($_SESSION['errors'] as $error){
                         echo '<p font color= "#FF0000">';
@@ -108,8 +107,7 @@
                     }
             }
               ?>
-=======
->>>>>>> 2db9ffec7772e69ef7459bdcdf682a7183a9b338
+
             <form action="../changepw.php" method="POST">
                 <p><input class="span6" type="password" placeholder="Please Type in Your Old Password" name="OldPassword" required=""></p>
                 <p><input class="span6" type="password" placeholder="Please Type in Your New Password" name="NewPassword1" required=""></p>
