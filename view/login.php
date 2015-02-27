@@ -27,6 +27,15 @@
 		exit;
 	}
 	else{
+		if($usertype == "0")
+		$query = "SELECT name FROM ADMINS WHERE admin_id ='$uid' AND pwd = '$upwd'";
+		//$query = "SELECT userid, username FROM tuser WHERE username = '$user_username' AND password = SHA('$user_password')";
+	else
+		$query = "SELECT name FROM STUDENTS WHERE student_id ='$uid' AND pwd = '$upwd'";
+		$realuid = mysqli_fetch_row(mysqli_query($query));
+		$user["UserID"] = $realuid[0];
+		$user["uacc"] = $_POST["UserID"];
+		$_SESSION['uacc'] = $_POST["UserID"];
 		$_SESSION['user'] = $user["UserID"];
 		$_SESSION['password'] = $user["Password"];
 		$_SESSION['usertype'] = $usertype;

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <?php session_start(); ?>
     <meta charset="utf-8">
     <title>Change Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,11 +56,11 @@
           <a class="brand" href="#">Peer Assessment System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="workspaceForAdmin.php">Home</a></li>
+              <li><a href="workspaceForAdmin.php">Home</a></li>
               <li><a href="../about.php">About</a></li>
             </ul>
-            <form class="navbar-form pull-right">
-              <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
+            <form class="navbar-form pull-right" action="../logout.php">
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['user']);?></span>
               <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->
@@ -73,24 +74,33 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Student</li>
-              <li class="active"><a href="StudentManagement.php">View Students</a></li>
+              <li ><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
               <li><a href="GroupManagement.php">View Groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
               <li class="nav-header">My Profile</li>
-              <li><a href="AdminChangePassword.php">Change Password</a></li>
+              <li class="active"><a href="AdminChangePassword.php">Change Password</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
             <h3>Change Personal Password</h3>
-            <p><input class="span6" type="password" placeholder="Please Type in Your Old Password" name="OldPassword" required=""></p>
-            <p><input class="span6" type="password" placeholder="Please Type in Your New Password" name="NewPassword1" required=""></p>
-            <p><input class="span6" type="password" placeholder="Please Retype Your New Password" name="NewPassword2" required=""></p>
-            <p><a href="#" class="btn btn-primary btn-large">Submit </a></p>
+                <?php if (isset($_SESSION['errors'])){
+                    foreach($_SESSION['errors'] as $error){
+                        echo '<p font color= "#FF0000">';
+                        echo $error.'</p><br>';
+                    }
+            }
+              ?>
+            <form action="../changepw.php" method="POST">
+                <p><input class="span6" type="password" placeholder="Please Type in Your Old Password" name="OldPassword" required=""></p>
+                <p><input class="span6" type="password" placeholder="Please Type in Your New Password" name="NewPassword1" required=""></p>
+                <p><input class="span6" type="password" placeholder="Please Retype Your New Password" name="NewPassword2" required=""></p>
+                <button type="submit" class="btn btn-primary btn-large">Submit</button>
+            </form>
           </div>
           
           

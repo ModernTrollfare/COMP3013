@@ -8,6 +8,7 @@
             $cookie = stripslashes($cookie);
             $user = json_decode($cookie, true);   
             session_unset();
+            $_SESSION['uacc'] = $user["uacc"];
             $_SESSION['user'] = $user["UserID"];
             $_SESSION['password'] = $user["Password"];
             $_SESSION['usertype'] = $user["Usertype"];
