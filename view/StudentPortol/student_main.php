@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <?php session_start(); ?>
     <meta charset="utf-8">
-    <title>Change Password</title>
+    <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -46,17 +47,17 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Peer Assessment System</a>
+          <a class="brand" href="student_main.php">Peer Assessment System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
+              <li class="active"><a href="student_main.php">Home</a></li>
+              <li><a href="../about.php">About</a></li>
               <!-- <li><a href="#contact">Contact</a></li> -->
               <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -71,8 +72,8 @@
                 </ul>
               </li> -->
             </ul>
-            <form class="navbar-form pull-right">
-              <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
+            <form class="navbar-form pull-right" action="../logout.php">
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['user']);?></span>
               <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->
@@ -85,35 +86,65 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li><a href="student_main.html">Main Page</a></li>
+              <li class="active"><a href="student_main.php">Main Page</a></li>
               <li class="nav-header">Assignments</li>
-              <li><a href="upload_assignment.html">Uploading</a></li>
+              <li><a href="upload_assignment.php">Uploading</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
-              <li><a href="view_allocated_assignments.html">Viewing Allocated Assignments</a></li>
-              <li><a href="view_grades_and_comments.html">Viewing Grades and Comments from Others</a></li>
+              <li><a href="view_allocated_assignments.php">Viewing Allocated Assignments</a></li>
+              <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.html">Changing Group Details</a></li>
-              <li class="active"><a href="change_password.html">Changing Personal Password</a></li>
+              <li><a href="change_group_details.php">Changing Group Details</a></li>
+              <li><a href="change_password.php">Changing Personal Password</a></li>
               <!-- <li><a href="#">Link</a></li> -->
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h3>Change Groups Details</h3>
-            <p><input class="span6" type="text" placeholder="Please Type in Your Group New Name" name="group_name"></p>
-            <p><input class="span6" type="text" placeholder="Please Type in Your Group New Description" name="group_description"></p>
-            <p><a href="#" class="btn btn-primary btn-large">Submit </a></p>
+            <h3>Hi. Welcome Back</h3>
+            <p>This is the Main Page for all Studetns to Upload or View</p>
+            <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
           </div>
-          
-          
-          
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Uploading Assignment</h2>
+              <p>This option is to upload your group's assignment for submiting</p>
+              <p><a class="btn" href="upload_assignment.php">Upload Assignment &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Viewing Others Assignements</h2>
+              <p>This option will show all others assignments that your group is alocated to be assess. You can also submitting the grades and comments after you view it</p>
+              <p><a class="btn" href="view_allocated_assignments.php">View and Grade Assignments &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Review Others Comments</h2>
+              <p>This option will show the grading and the comments that others feedback </p>
+              <p><a class="btn" href="view_grades_and_comments.php">Review Your Grade &raquo;</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Changing Your Group Details</h2>
+              <p>This option will let you to change the group name and group description</p>
+              <p><a class="btn" href="change_group_details.php">Change Group's Details &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Changing Your Password</h2>
+              <p>This option will let you to change your password</p>
+              <p><a class="btn" href="change_password.php">Change Password &raquo;</a></p>
+            </div><!--/span-->
+            <!-- <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div> --><!--/span-->
+          </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->
 

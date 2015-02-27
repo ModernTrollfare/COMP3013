@@ -2,23 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Change Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
-    </style>
-    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+      .sidebar-nav {
+        padding: 9px 0;
+      }
 
-    <!-- Custom styles for login template -->
-    <link href="../lib/bootstrap/css/signin.css" rel="stylesheet">
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="../../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -37,7 +46,7 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -46,8 +55,8 @@
           <a class="brand" href="#">Peer Assessment System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
+              <li class="active"><a href="student_main.php">Home</a></li>
+              <li><a href="about.php">About</a></li>
               <!-- <li><a href="#contact">Contact</a></li> -->
               <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -62,59 +71,60 @@
                 </ul>
               </li> -->
             </ul>
-            <form class="navbar-form pull-right" action="login.php" method="POST">
-              <select class="span2" name="UserType">
-                  <option value="-1">Select...</option>
-                  <option value="0">Teacher</option>
-                  <option value="1">Student</option>
-              </select>
-              <input class="span2" type="text" placeholder="UserID" name="UserID" required="" autofocus="">
-              <input class="span2" type="password" placeholder="Password" name="Password" required="">
-              <button type="submit" class="btn">Sign in</button>
+            <form class="navbar-form pull-right">
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
+              <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container">
-
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Virtual Learning Environment</h1>
-        <h2>Peer Assessment</h2>
-        <p>Hi. This is the Home Page.</p>
-        <h3 style="color:red">AND NOTHING ELSE IS WORKING</h3>
-        <img src="../resources/pic/HANDYMAN-IMAGE.jpg" alt="Maintaining"> 
-        <!-- s -->
-      </div>
-
-      <!-- Example row of columns -->
-      <!-- <div class="row">
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-       </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-      </div> -->
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li><a href="student_main.php">Main Page</a></li>
+              <li class="nav-header">Assignments</li>
+              <li><a href="upload_assignment.php">Uploading</a></li>
+              <!-- <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li> -->
+              <li class="nav-header">Assessments</li>
+              <li><a href="view_allocated_assignments.php">Viewing Allocated Assignments</a></li>
+              <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
+              <!-- <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li> -->
+              <li class="nav-header">Personal and Group Details</li>
+              <li><a href="change_group_details.php">Changing Group Details</a></li>
+              <li class="active"><a href="change_password.php">Changing Personal Password</a></li>
+              <!-- <li><a href="#">Link</a></li> -->
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="hero-unit">
+            <h3>Change Personal Password</h3>
+            <p><input class="span6" type="password" placeholder="Please Type in Your Old Password" name="OldPassword" required=""></p>
+            <p><input class="span6" type="password" placeholder="Please Type in Your New Password" name="NewPassword1" required=""></p>
+            <p><input class="span6" type="password" placeholder="Please Retype Your New Password" name="NewPassword2" required=""></p>
+            <p><a href="#" class="btn btn-primary btn-large">Submit </a></p>
+          </div>
+          
+          
+          
+        </div><!--/span-->
+      </div><!--/row-->
 
       <hr>
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Peer Assessment System</p>
       </footer>
 
-    </div> <!-- /container -->
+    </div><!--/.fluid-container-->
 
     <!-- Le javascript
     ================================================== -->

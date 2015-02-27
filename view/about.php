@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <?php 
+        session_start();
+        if(isset($_COOKIE['uinf'])){
+            $cookie = $_COOKIE['uinf'];
+            $cookie = stripslashes($cookie);
+            $user = json_decode($cookie, true);   
+            session_unset();
+            $_SESSION['user'] = $user["UserID"];
+            $_SESSION['password'] = $user["Password"];
+            $_SESSION['usertype'] = $user["Usertype"];
+            $json = json_encode($user);
+            setcookie("uinf", $json, time()+(60*60*6));
+            }
+    ?>
     <meta charset="utf-8">
     <title>Bootstrap, from Twitter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +31,7 @@
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
+    <link href="../lib/css/signin.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
@@ -31,22 +46,40 @@
   </head>
 
   <body>
-
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Peer Assessment System</a>
+          <?php
+          if(isset($_COOKIE['uinf'])){
+            if ($_SESSION['usertype'] == '0')
+                echo '<a class="brand" href="AdminPortol/workspaceForAdmin.php">Peer Assessment System</a>'."\n";
+            else
+                echo '<a class="brand" href="StudentPortol/student_main.php">Peer Assessment System</a>'."\n";
+          }
+          else
+            echo '<a class="brand" href="index.php">Peer Assessment System</a>'."\n";
+          ?>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li class="dropdown">
+                <?php
+                    if(isset($_COOKIE['uinf'])){
+                        if ($_SESSION['usertype'] == '0')
+                            echo '<li><a href="AdminPortol/workspaceForAdmin.php">Home</a>'."\n";
+                        else
+                            echo '<li><a href="StudentPortol/student_main.php">Home</a>'."\n";
+                    }
+                    else{
+                        echo '<li><a href="index.php">Home</a></li>'."\n";
+                    }
+                ?>
+              <li class="active"><a href="about.php">About</a></li>
+              <!-- <li><a href="#contact">Contact</a></li> -->
+              <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Action</a></li>
@@ -57,14 +90,29 @@
                   <li><a href="#">Separated link</a></li>
                   <li><a href="#">One more separated link</a></li>
                 </ul>
-              </li>
+              </li> -->
             </ul>
-            <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Email">
-              <input class="span2" type="password" placeholder="Password">
-              <button type="submit" class="btn">Sign in</button>
-            </form>
-          </div>
+            <?php
+            if(isset($_COOKIE['uinf'])){
+                echo '<form class="navbar-form pull-right" action="logout.php">'."\n";
+                echo '<span class="input-group-addon" id="user-greeting" style="color:white">Hi '.$_SESSION['user'].'</span>'."\n";
+                echo '<button type="submit" class="btn">Sign Out</button>'."\n";
+                echo '</form>'."\n";
+            }
+            else{
+                echo '<form class="navbar-form pull-right" action="login.php" method="POST">'."\n";
+                echo  '<select class="span2" name="UserType">'."\n";
+                echo  '<option value="-1">Select...</option>'."\n";
+                echo  '<option value="0">Teacher</option>'."\n";
+                echo  '<option value="1">Student</option>'."\n";
+                echo  '</select>'."\n";
+                echo  '<input class="span2" type="text" placeholder="UserID" name="UserID" required="" autofocus="">'."\n";
+                echo  '<input class="span2" type="password" placeholder="Password" name="Password" required="">'."\n";
+                echo  '<button type="submit" class="btn">Sign in</button>'."\n";
+                echo  '</form>'."\n";
+            }
+            ?>
+          </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>

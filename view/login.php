@@ -31,12 +31,12 @@
 		$_SESSION['password'] = $user["Password"];
 		$_SESSION['usertype'] = $usertype;
 		$json = json_encode($user);
-		setcookie("uinf", $json, time()+(60*60*6));
+		setcookie("uinf", $json, time()+(60*60*6));	
 		if($usertype == '0'){
-			header('Location: AdminPortol/workspaceForAdmin.html');
+			header('Location: AdminPortol/workspaceForAdmin.php');
 		}
 		else{
-			header('Location: StudentPortol/student_main.html');
+			header('Location: StudentPortol/student_main.php');
 		}
 	}
 ?>

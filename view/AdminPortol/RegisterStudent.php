@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.html -->
+<!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>Student Management</title>
@@ -55,8 +55,8 @@
           <a class="brand" href="#">Peer Assessment System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="workspaceForAdmin.html">Home</a></li>
-              <li><a href="../about.html">About</a></li>
+              <li class="active"><a href="workspaceForAdmin.php">Home</a></li>
+              <li><a href="../about.php">About</a></li>
             </ul>
             <form class="navbar-form pull-right">
               <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
@@ -73,14 +73,14 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Student</li>
-              <li class="active"><a href="StudentManagement.html">View Students</a></li>
-              <li><a href="RegisterStudent.html">Register New Student</a></li>
+              <li class="active"><a href="StudentManagement.php">View Students</a></li>
+              <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
-              <li><a href="GroupManagement.html">View Groups</a></li>
+              <li><a href="GroupManagement.php">View Groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
-              <li><a href="AssignmentManagement.html">View Assignments</a></li>
+              <li><a href="AssignmentManagement.php">View Assignments</a></li>
               <li class="nav-header">My Profile</li>
-              <li><a href="AdminChangePassword.html">Change Password</a></li>
+              <li><a href="AdminChangePassword.php">Change Password</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

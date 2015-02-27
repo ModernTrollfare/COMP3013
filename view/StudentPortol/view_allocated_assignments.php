@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>View Grades and Comments</title>
+    <title>View Assignments</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -46,7 +46,7 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -55,8 +55,8 @@
           <a class="brand" href="#">Peer Assessment System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
+              <li class="active"><a href="student_main.php">Home</a></li>
+              <li><a href="about.php">About</a></li>
               <!-- <li><a href="#contact">Contact</a></li> -->
               <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -85,53 +85,58 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li><a href="student_main.html">Main Page</a></li>
+              <li><a href="student_main.php">Main Page</a></li>
               <li class="nav-header">Assignments</li>
-              <li><a href="upload_assignment.html">Uploading</a></li>
+              <li><a href="upload_assignment.php">Uploading</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
-              <li><a href="view_allocated_assignments.html">Viewing Allocated Assignments</a></li>
-              <li class="active"><a href="view_grades_and_comments.html">Viewing Grades and Comments from Others</a></li>
+              <li class="active"><a href="view_allocated_assignments.php">Viewing Allocated Assignments</a></li>
+              <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.html">Changing Group Details</a></li>
-              <li><a href="change_password.html">Changing Personal Password</a></li>
+              <li><a href="change_group_details.php">Changing Group Details</a></li>
+              <li><a href="change_password.php">Changing Personal Password</a></li>
               <!-- <li><a href="#">Link</a></li> -->
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h3>Viewing Gardes and Comments from Others</h3>
-            <p>This Page will show all the grades and comments which are given by other groups</p>
+            <h3>Viewing Allocated Assignments</h3>
+            <p>If you have uploaded before, the content will be shown at the bottom</p>
+            <p>If you are going to upload your latest version, please press the 'Upload Button'</p>
             <!-- <p><a href="#" class="btn btn-primary btn-large">Upload </a></p> -->
           </div>
 
           <div class="hero-unit">
-            <!-- <h2>[Group Number]</h2> -->
-            <p><span class="badge">Grade: [0-5]</span></p>
-            <p><span class="label">Comment: [.....................]</span></p>
-            <p></p>
-            <p></p>
-            <p><span class="badge">Grade: [0-5]</span></p>
-            <p><span class="label">Comment: [.....................]</span></p>
-            <p></p>
-            <p></p>
-            <p><span class="badge">Grade: [0-5]</span></p>
-            <p><span class="label">Comment: [.....................]</span></p>
-            <p></p>
-            <p></p>
-            <p><span class="badge">Grade: [0-5]</span></p>
-            <p><span class="label">Comment: [.....................]</span></p>
-            <p></p>
-            <p></p>
-            <!-- <p><a href="view_each_allocated_assignments.html" class="btn btn-primary btn-large">View More </a></p> -->
+            <h3>[Group Number]</h3>
+            <p>[First 100 Chars]</p>
+            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
           </div>
-          
+          <div class="hero-unit">
+            <h3>[Group Number]</h3>
+            <p>[First 100 Chars]</p>
+            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
+          </div>
+          <div class="hero-unit">
+            <h3>[Group Number]</h3>
+            <p>[First 100 Chars]</p>
+            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
+          </div>
+          <div class="hero-unit">
+            <h3>[Group Number]</h3>
+            <p>[First 100 Chars]</p>
+            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
+          </div>
+          <div class="hero-unit">
+            <h3>[Group Number]</h3>
+            <p>[First 100 Chars]</p>
+            <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
+          </div>
           
           
         </div><!--/span-->

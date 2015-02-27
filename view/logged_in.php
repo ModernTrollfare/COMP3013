@@ -68,12 +68,9 @@
                 </ul>
               </li> -->
             </ul>
-            <form class="navbar-form pull-right">
+            <form class="navbar-form pull-right" action="logout.php">
               <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($SESSION['user']); ?></span>
               <button type="submit" class="btn">Sign Out</button>
-              <?php
-                    header("Location: logout.php");
-              ?>
             </form>
           </div><!--/.nav-collapse -->
         </div>

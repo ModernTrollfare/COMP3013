@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>View Assignments</title>
+    <title>Change Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -46,7 +46,7 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -55,21 +55,8 @@
           <a class="brand" href="#">Peer Assessment System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <!-- <li><a href="#contact">Contact</a></li> -->
-              <!-- <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="nav-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li> -->
+              <li class="active"><a href="workspaceForAdmin.php">Home</a></li>
+              <li><a href="../about.php">About</a></li>
             </ul>
             <form class="navbar-form pull-right">
               <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
@@ -85,58 +72,27 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li><a href="student_main.html">Main Page</a></li>
-              <li class="nav-header">Assignments</li>
-              <li><a href="upload_assignment.html">Uploading</a></li>
-              <!-- <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li> -->
-              <li class="nav-header">Assessments</li>
-              <li class="active"><a href="view_allocated_assignments.html">Viewing Allocated Assignments</a></li>
-              <li><a href="view_grades_and_comments.html">Viewing Grades and Comments from Others</a></li>
-              <!-- <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li> -->
-              <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.html">Changing Group Details</a></li>
-              <li><a href="change_password.html">Changing Personal Password</a></li>
-              <!-- <li><a href="#">Link</a></li> -->
+              <li class="nav-header">Student</li>
+              <li class="active"><a href="StudentManagement.php">View Students</a></li>
+              <li><a href="RegisterStudent.php">Register New Student</a></li>
+              <li class="nav-header">Group</li>
+              <li><a href="GroupManagement.php">View Groups</a></li>
+              <li class="nav-header">Assignment & Assessment</li>
+              <li><a href="AssignmentManagement.php">View Assignments</a></li>
+              <li class="nav-header">My Profile</li>
+              <li><a href="AdminChangePassword.php">Change Password</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h3>Viewing Allocated Assignments</h3>
-            <p>If you have uploaded before, the content will be shown at the bottom</p>
-            <p>If you are going to upload your latest version, please press the 'Upload Button'</p>
-            <!-- <p><a href="#" class="btn btn-primary btn-large">Upload </a></p> -->
+            <h3>Change Personal Password</h3>
+            <p><input class="span6" type="password" placeholder="Please Type in Your Old Password" name="OldPassword" required=""></p>
+            <p><input class="span6" type="password" placeholder="Please Type in Your New Password" name="NewPassword1" required=""></p>
+            <p><input class="span6" type="password" placeholder="Please Retype Your New Password" name="NewPassword2" required=""></p>
+            <p><a href="#" class="btn btn-primary btn-large">Submit </a></p>
           </div>
-
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.html" class="btn btn-primary btn-large">View More </a></p>
-          </div>
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.html" class="btn btn-primary btn-large">View More </a></p>
-          </div>
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.html" class="btn btn-primary btn-large">View More </a></p>
-          </div>
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.html" class="btn btn-primary btn-large">View More </a></p>
-          </div>
-          <div class="hero-unit">
-            <h3>[Group Number]</h3>
-            <p>[First 100 Chars]</p>
-            <p><a href="view_each_allocated_assignments.html" class="btn btn-primary btn-large">View More </a></p>
-          </div>
+          
           
           
         </div><!--/span-->
