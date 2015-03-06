@@ -4,7 +4,7 @@
 	$oldpw = $_POST['OldPassword'];
 	$new1  = $_POST['NewPassword1'];
 	$new2  = $_POST['NewPassword2'];
-	$uid = $_SESSION['uacc'];
+	$uid = $_SESSION['userid'];
 	if ($new1 != $new2){
 		$_SESSION['errors'] = array('You new passwords does not match.');
 		if($_SESSION['usertype'] == '0'){
@@ -15,7 +15,7 @@
 		}
 		exit;
 	 }
-	if($usertype == "0")
+	if($_SESSION['usertype'] == "0")
 		$query = "SELECT admin_id FROM ADMINS WHERE admin_id ='$uid' AND pwd = '$oldpw'";
 		//$query = "SELECT userid, username FROM tuser WHERE username = '$user_username' AND password = SHA('$user_password')";
 	else
@@ -42,7 +42,7 @@
 		exit;
 	}
 	$temp = mysqli_fetch_assoc($result);
-	if($usertype == "0")
+	if($_SESSION['usertype'] == "0")
 		$tempuid = $temp["admin_id"];
 	else
 		$tempuid = $temp["student_id"];
@@ -50,7 +50,7 @@
  //    var_dump($_SESSION['errors']);
  //    echo '</pre>';
 	// var_dump($tempuid);
-	if($usertype == "0")
+	if($_SESSION['usertype'] == "0")
 		$sql = "UPDATE ADMINS SET pwd ='$new1' WHERE admin_id = '$tempuid'";
 	else
 		$sql = "UPDATE STUDENTS SET pwd ='$new1' WHERE student_id = '$tempuid'";
