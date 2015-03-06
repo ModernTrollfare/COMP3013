@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <?php session_start();
-        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
-            $_SESSION['errors'] = array("Please Login before proceeding.");
+    <?php session_start();
+        if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
             header("Location: ../index.php");
+            $_SESSION['errors'] = array("Please Login before proceeding.");
         }
-        if($_SESSION['Usertype'] != '1'){
-            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
-            header('Refresh: 5; URL= ../index.php');
+        else if($_SESSION['usertype'] != '1'){
+            header("Refresh:3;url=../index.php");
+            print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
+            exit;
         }
     ?>
+    <!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>View Assignments</title>
@@ -81,8 +82,8 @@
                 </ul>
               </li> -->
             </ul>
-            <form class="navbar-form pull-right">
-              <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
+            <form class="navbar-form pull-right" action="../logout.php">
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['username']);?></span>
               <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->

@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
     <?php session_start();
         if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
-            $_SESSION['errors'] = array("Please Login before proceeding.");
             header("Location: ../index.php");
+            $_SESSION['errors'] = array("Please Login before proceeding.");
         }
-        if($_SESSION['usertype'] != '1'){
-            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
-            sleep(5);
-            //header('Location = ../index.php');
-            echo $_SESSION['usertype'];
+        else if($_SESSION['usertype'] != '1'){
+            header("Refresh:3;url=../index.php");
+            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 3 seconds.");
+            exit;
         }
     ?>
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+
     <meta charset="utf-8">
     <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
