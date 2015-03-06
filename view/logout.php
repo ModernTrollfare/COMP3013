@@ -10,7 +10,7 @@
 	// Destroy the session variables
 	session_unset();
 	// Double check to see if their sessions exists
-	if(isset($_SESSION['user'])){
+	if(isset($_SESSION['username'])){
 		header("location: error.html");
 	} else {
 		header("location: index.php");

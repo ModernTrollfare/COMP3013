@@ -2,31 +2,31 @@
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <?php session_start();
-        if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
+        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
             $_SESSION['errors'] = array("Please Login before proceeding.");
             header("Location: ../index.php");
         }
-        if($_SESSION['usertype'] != '0'){
+        if($_SESSION['Usertype'] != '0'){
             print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
-            header('Refresh: 5; URL= ../index.php');
+            header('Refresh: 5; URL= ../index.php');exit();
         }
     ?>
     <meta charset="utf-8">
-    <title>Administrator Portal</title>
+    <title>Register New Student</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="../../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
-      }
         padding-top: 60px;
         padding-bottom: 40px;
       }
       .sidebar-nav {
         padding: 9px 0;
+      }
 
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
@@ -37,7 +37,7 @@
         }
       }
     </style>
-    <link href="../../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -45,11 +45,11 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
   </head>
 
   <body>
@@ -69,7 +69,7 @@
               <li><a href="../about.php">About</a></li>
             </ul>
             <form class="navbar-form pull-right" action="../logout.php">
-              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['username']);?></span>
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['user']);?></span>
               <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->
@@ -82,10 +82,10 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li><a href="workspaceForAdmin.php">Main Page</a></li>
+              <a href="workspaceForAdmin.php">Main Page</a>
               <li class="nav-header">Student</li>
-              <li class="active"><a href="StudentManagement.php">View Students</a></li>
-              <li><a href="RegisterStudent.php">Register New Student</a></li>
+              <li><a href="StudentManagement.php">View Students</a></li>
+              <li class="active"><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
               <li><a href="GroupManagement.php">View Groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
@@ -96,36 +96,24 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <div class="hero-unit">
-            <h1>Hello, world!</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-            <p><a href="http://getbootstrap.com/2.3.2/examples/fluid.php#" class="btn btn-primary btn-large">Learn more »</a></p>
-          </div>
-          <div class="row-fluid">
-            <div class="span4">
-              <h2>Students</h2>
-              <p>Register, view and search for students; Reset student password </p>
-              <p><a class="btn" href="StudentManagement.php">View details »</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Groups</h2>
-              <p>View group details, and allocate groups</p>
-              <p><a class="btn" href="GroupManagement.php">View details »</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Assignments & Assessments</h2>
-              <p>Monitor the group assignments and assessments</p>
-              <p><a class="btn" href="AssignmentManagement.php">View details »</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
-          <div class="row-fluid">
-            <div class="span4">
-              <h2>My Profile</h2>
-              <p>Edit personal detail, change password</p>
-              <p><a class="btn" href="AdminChangePassword.php">View details »</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
+          <div class="container">
+              <h2 class="form-signin-heading">Registered Student Details</h2>
+              <?php
+                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+                $query = "SELECT * FROM STUDENTS WHERE student_id = MAX(student_id)";
+                $result = mysqli_query($connection,$query);
+                $myrow = mysqli_fetch_array($result);
+                echo "<h3>Student Login ID:";
+                print($myrow['student_id']);
+                echo "<br>Student Password:";
+                print($myrow['pwd']);
+                echo "<br>Student Name:";
+                print($myrow['name']);
+                echo "<br>Please print the details out and give it out to the students.</h3>";
+              ?>
+          </div> <!-- /container -->            
         </div><!--/span-->
+        <button class="span3 btn btn-lg btn-primary btn-block" type="submit" href="RegisterStudent.php">Return to register another student</button>
       </div><!--/row-->
 
       <hr>

@@ -2,13 +2,15 @@
 <html lang="en">
   <head>
     <?php session_start();
-        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
+        if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
             $_SESSION['errors'] = array("Please Login before proceeding.");
             header("Location: ../index.php");
         }
-        if($_SESSION['Usertype'] != '1'){
+        if($_SESSION['usertype'] != '1'){
             print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
-            header('Refresh: 5; URL= ../index.php');
+            sleep(5);
+            //header('Location = ../index.php');
+            echo $_SESSION['usertype'];
         }
     ?>
     <meta charset="utf-8">
@@ -82,7 +84,7 @@
               </li> -->
             </ul>
             <form class="navbar-form pull-right" action="../logout.php">
-              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['user']);?></span>
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['username']);?></span>
               <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->

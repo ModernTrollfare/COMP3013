@@ -68,8 +68,8 @@
               <li class="active"><a href="workspaceForAdmin.php">Home</a></li>
               <li><a href="../about.php">About</a></li>
             </ul>
-            <form class="navbar-form pull-right">
-              <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
+            <form class="navbar-form pull-right" action="../logout.php">
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['username']);?></span>
               <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->
@@ -97,9 +97,9 @@
         </div><!--/span-->
         <div class="span9">
           <div class="container">
-            <form class="form-signin">
+            <form class="form-signin" action="newstu.php">
               <h2 class="form-signin-heading">Please fill in student details</h2>
-              <label for="inputName" class="sr-only">Student Name</label>
+              <label for="inputName" class="sr-only" >Student Name</label>
               <input type="name" id="inputName" class="form-control" placeholder="Full Name" required="" autofocus="">
               <br></br>              
               

@@ -3,10 +3,10 @@
 	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
 	$usertype = $_POST["UserType"];
 	$user = array();
-	$user["UserID"] = $_POST["UserID"];
+	$user["userid"] = $_POST["UserID"];
 	$user["Password"] = $_POST["Password"];
-	$user["Usertype"] = $usertype;
-	$uid = $user["UserID"];
+	$user["usertype"] = $usertype;
+	$uid = $user["userid"];
 	$upwd = $user["Password"];
 	if($usertype == "-1"){
 		$_SESSION['errors'] = array("Please Select your User Type.");
@@ -26,26 +26,22 @@
 		//window.history.back();
 		exit;
 	}
+	$myrow = mysqli_fetch_assoc($result);
+	//var_dump($myrow);
+	//exit;
+	$_SESSION['userid'] = $user["userid"];
+	$_SESSION['username'] = $myrow["name"];
+	$user['username'] = $myrow["name"];
+	$_SESSION['password'] = $user["Password"];
+	$_SESSION['usertype'] = $usertype;
+	$json = json_encode($user);
+	var_dump($user);
+	exit;
+	setcookie("uinf", $json, time()+(60*60*6));	
+	if($usertype == '0'){
+		header('Location: AdminPortol/workspaceForAdmin.php');
+	}
 	else{
-		if($usertype == "0")
-		$query = "SELECT name FROM ADMINS WHERE admin_id ='$uid' AND pwd = '$upwd'";
-		//$query = "SELECT userid, username FROM tuser WHERE username = '$user_username' AND password = SHA('$user_password')";
-	else
-		$query = "SELECT name FROM STUDENTS WHERE student_id ='$uid' AND pwd = '$upwd'";
-		$realuid = mysqli_fetch_row(mysqli_query($query));
-		$user["UserID"] = $realuid[0];
-		$user["uacc"] = $_POST["UserID"];
-		$_SESSION['uacc'] = $_POST["UserID"];
-		$_SESSION['user'] = $user["UserID"];
-		$_SESSION['password'] = $user["Password"];
-		$_SESSION['usertype'] = $usertype;
-		$json = json_encode($user);
-		setcookie("uinf", $json, time()+(60*60*6));	
-		if($usertype == '0'){
-			header('Location: AdminPortol/workspaceForAdmin.php');
-		}
-		else{
-			header('Location: StudentPortol/student_main.php');
-		}
+		header('Location: StudentPortol/student_main.php');
 	}
 ?>
