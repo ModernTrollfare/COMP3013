@@ -6,7 +6,7 @@
 	$new2  = $_POST['NewPassword2'];
 	$uid = $_SESSION['uacc'];
 	if ($new1 != $new2){
-		$_SESSION['errors'] = 'You new passwords does not match.'
+		$_SESSION['errors'] = array('You new passwords does not match.');
 		if($_SESSION['usertype'] == '0'){
 			header('Location: AdminPortol/AdminChangePassword.php');
 		}
@@ -14,7 +14,7 @@
 			header('Location: StudentPortol/change_password.php');
 		}
 		exit;
-	}
+	 }
 	if($usertype == "0")
 		$query = "SELECT admin_id FROM ADMINS WHERE admin_id ='$uid' AND pwd = '$oldpw'";
 		//$query = "SELECT userid, username FROM tuser WHERE username = '$user_username' AND password = SHA('$user_password')";
@@ -41,12 +41,21 @@
 		}
 		exit;
 	}
-	$temp = mysql_fetch_row($result);
-	$tempuid = $temp[0];
+	$temp = mysqli_fetch_assoc($result);
+	if($usertype == "0")
+		$tempuid = $temp["admin_id"];
+	else
+		$tempuid = $temp["student_id"];
+	// echo '<pre>';
+ //    var_dump($_SESSION['errors']);
+ //    echo '</pre>';
+	// var_dump($tempuid);
 	if($usertype == "0")
 		$sql = "UPDATE ADMINS SET pwd ='$new1' WHERE admin_id = '$tempuid'";
 	else
 		$sql = "UPDATE STUDENTS SET pwd ='$new1' WHERE student_id = '$tempuid'";
+	$result = mysqli_query($connection,$sql) or die('Error making updating user pwd' . mysqli_error($connection));
+
 	$_SESSION['errors'] = array("Your password is updated.");
 	if($_SESSION['usertype'] == '0'){
 		header('Location: AdminPortol/AdminChangePassword.php');
