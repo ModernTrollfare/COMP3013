@@ -20,7 +20,7 @@
 
 	$query = "INSERT INTO reports (text_file, group_id, last_modified) VALUES ($content, $groupid, $date)";
 
-	if (mysqli_query($query) != true) {
+	if (mysqli_query($connection, $query) != true) {
 		echo '<script language="javascript">'
 		echo'alert("upload unsuccessful! It will direct you backe in 5 secs")'
 		echo '</script>'
