@@ -100,9 +100,6 @@
           <div class="hero-unit">
             <h3>Change Personal Password</h3>
                 <?php 
-                  echo '<pre>';
-                  var_dump($_SESSION['errors']);
-                  echo '</pre>';
                   if (isset($_SESSION['errors'])){
                     // echo '<font color= "#FF0000">';
                     // echo("{$_SESSION['errors']}"."</font><br />");
