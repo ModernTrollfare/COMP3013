@@ -1,16 +1,17 @@
+<?php session_start();
+    if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
+        header("Location: ../index.php");
+        $_SESSION['errors'] = array("Please Login before proceeding.");
+    }
+    else if($_SESSION['usertype'] != '0'){
+        header("Refresh:3;url=../index.php");
+        print("Well - You do not have the permission to access this page. You will be redirected to you home page in 3 seconds.");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <?php session_start();
-        if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
-            $_SESSION['errors'] = array("Please Login before proceeding.");
-            header("Location: ../index.php");
-        }
-        if($_SESSION['usertype'] != '0'){
-            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
-            header('Refresh: 5; URL= ../index.php');
-        }
-    ?>
     <meta charset="utf-8">
     <title>Administrator Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -1,16 +1,17 @@
+<?php session_start();
+    if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
+        header("Location: ../index.php");
+        $_SESSION['errors'] = array("Please Login before proceeding.");
+    }
+    else if($_SESSION['usertype'] != '0'){
+        header("Refresh:3;url=../index.php");
+        print("Well - You do not have the permission to access this page. You will be redirected to you home page in 3 seconds.");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php session_start();
-        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
-            $_SESSION['errors'] = array("Please Login before proceeding.");
-            header("Location: ../index.php");
-        }
-        if($_SESSION['Usertype'] != '0'){
-            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
-            header('Refresh: 5; URL= ../index.php');
-        }
-    ?>
     <meta charset="utf-8">
     <title>Change Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +70,7 @@
               <li><a href="../about.php">About</a></li>
             </ul>
             <form class="navbar-form pull-right" action="../logout.php">
-              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['user']);?></span>
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['username']);?></span>
               <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->

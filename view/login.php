@@ -35,8 +35,7 @@
 	$_SESSION['password'] = $user["Password"];
 	$_SESSION['usertype'] = $usertype;
 	$json = json_encode($user);
-	var_dump($user);
-	exit;
+
 	setcookie("uinf", $json, time()+(60*60*6));	
 	if($usertype == '0'){
 		header('Location: AdminPortol/workspaceForAdmin.php');
