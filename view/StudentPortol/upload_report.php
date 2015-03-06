@@ -120,7 +120,7 @@
             <h3>Uploading Assignment</h3>
             <p>If you have uploaded before, the content will be shown at the bottom</p>
             <p>If you are going to upload your latest version, please press the 'Upload Button'</p>
-            <p><a href="#" class="btn btn-primary btn-large">Upload </a></p>
+            <p><a href="upload_report_2.php" class="btn btn-primary btn-large">Upload </a></p>
           </div>
 
           <div class="hero-unit">
