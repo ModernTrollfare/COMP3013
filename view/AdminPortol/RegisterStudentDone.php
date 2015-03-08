@@ -101,9 +101,9 @@
               <h2 class="form-signin-heading">Registered Student Details</h2>
               <?php
                 $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
-                $query = "SELECT * FROM STUDENTS WHERE student_id = MAX(student_id)";
-                $result = mysqli_query($connection,$query);
-                $myrow = mysqli_fetch_array($result);
+                $query = "SELECT * FROM STUDENTS WHERE student_id =(SELECT MAX(student_id) from STUDENTS)";
+                $result = mysqli_query($connection,$query) or die('Error making select users query' . mysqli_error($connection));;
+                $myrow = mysqli_fetch_assoc($result);
                 echo "<h3>Student Login ID:";
                 print($myrow['student_id']);
                 echo "<br>Student Password:";
@@ -144,4 +144,4 @@
 
   
 
-<embed id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd" type="application/thunder_download_plugin" height="0" width="0"></body></html>
+</body></html>

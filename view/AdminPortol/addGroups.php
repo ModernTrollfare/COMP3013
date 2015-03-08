@@ -13,7 +13,7 @@
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Register New Student</title>
+    <title>View Groups</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -77,18 +77,18 @@
         </div>
       </div>
     </div>
-
+    
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <a href="workspaceForAdmin.php">Main Page</a>
+              <a href="student_main.php">Main Page</a>
               <li class="nav-header">Student</li>
               <li><a href="StudentManagement.php">View Students</a></li>
-              <li class="active"><a href="RegisterStudent.php">Register New Student</a></li>
+              <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
-              <li><a href="GroupManagement.php">View Groups</a></li>
+              <li class="active"><a href="GroupManagement.php">View Groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
               <li class="nav-header">My Profile</li>
@@ -97,17 +97,29 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <div class="container">
-            <form class="form-signin" action="newstu.php" method="POST">
-              <h2 class="form-signin-heading">Please fill in student details</h2>
-              <label for="inputName" class="sr-only" >Student Name</label>
-              <input type="name" id="inputName" name="inputName" class="form-control" placeholder="Full Name" required="" autofocus="">         
-              <br></br>    
-              <button class="span3 btn btn-lg btn-primary btn-block" type="submit">Register</button>
-            </form>
-          </div> <!-- /container -->            
-        </div><!--/span-->
+          <h2 class="sub-header">Add new groups</h2>
+          <?php
+            foreach($_SESSION['adderrors'] as $error){
+                echo '<font color="#FF0000">';
+                print($error);
+                echo '<br></br></font>';
+            }
+            unset($_SESSION['adderrors']);
 
+          ?>
+          <form class="navbar-form pull-right" action="addAction.php" method="POST">
+            <label for="groupnums" class="sr-only">Number of groups to be enrolled</label>
+              <select class="span2" name="groupnums" id ="groupnums">
+                <?php
+                  for( $i = 1; $i <= 20; $i += 1){
+                    echo "<option value=".$i.">".$i."</option>";
+                  }
+                ?>
+              </select>
+              <button type="submit" class="btn">Add Groups</button>
+            </form>
+          <h2 class="sub-header"></h2>
+        </div><!--/span-->
       </div><!--/row-->
 
       <hr>
@@ -137,4 +149,4 @@
 
   
 
-<embed id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd" type="application/thunder_download_plugin" height="0" width="0"></body></html>
+<embed id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd" type="application/thunder_download_plugin" height="0" width="0"></body></html>v

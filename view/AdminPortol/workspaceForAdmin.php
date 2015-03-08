@@ -85,7 +85,7 @@
             <ul class="nav nav-list">
               <li><a href="workspaceForAdmin.php">Main Page</a></li>
               <li class="nav-header">Student</li>
-              <li class="active"><a href="StudentManagement.php">View Students</a></li>
+              <li><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
               <li><a href="GroupManagement.php">View Groups</a></li>

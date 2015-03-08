@@ -86,7 +86,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Student</li>
               <li class="active"><a href="StudentManagement.php">View Students</a></li>
-              <li><a href="RegisterStudent.php">Register New Student</a></li>
+              <li><a href="RegisterStudent.php">Registered Student Details</a></li>
               <li class="nav-header">Group</li>
               <li><a href="GroupManagement.php">View Groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
@@ -100,7 +100,7 @@
           <div class="hero-unit">
             <h1>Register a new student</h1>
             <p></p>            
-            <p><a href="RegisterStudent.php" class="btn btn-primary btn-large">Register Now »</a></p>
+            <p><a href="RegisterStudent.php" class="btn btn-primary btn-large">Register a New Student Now »</a></p>
           </div>
                     <h2 class="sub-header">Section title</h2>
           <div class="table-responsive">
@@ -131,7 +131,7 @@
                         $group=mysql_fetch_row($groups);
                         echo "<td>".$group[0]."</td></tr>";
                       }else {
-                        echo "<td>fail</td></tr>";
+                        echo "<td>unassigned</td></tr>";
                       }
                     }
                     mysql_close();

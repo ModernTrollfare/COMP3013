@@ -122,18 +122,33 @@
                       $student1 = $row['student_1'];
                       $student2 = $row['student_2'];
                       $student3 = $row['student_3'];
+                      $nos = 3;
                       $studentName1 = mysql_fetch_row(mysql_query("SELECT name FROM students WHERE student_id = '$student1'"));
                       $studentName2 = mysql_fetch_row(mysql_query("SELECT name FROM students WHERE student_id = '$student2'"));
                       $studentName3 = mysql_fetch_row(mysql_query("SELECT name FROM students WHERE student_id = '$student3'"));
-                      echo "<tr><td>" . $row['group_id'] . "</td><td>" . $studentName1[0]. "</td><td>" . 
-                            $studentName2[0] . "</td><td>" . $studentName3[0] . "</td>";
-                      $groupID = $row['group_id'];
-                      //print($studentID);
-                      $report = mysql_query("SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
-                      if(mysql_num_rows($report)==1){
-                        echo "<td>&#10004</td></tr>";
-                      }else {
-                        echo "<td></td></tr>";
+                      if(mysql_num_rows($studentName1) == 0){
+                        $studentName1['name'] = "Unassigned";
+                        $nos = $nos-1;
+                      }
+                      if(mysql_num_rows($studentName2) == 0){
+                        $studentName2['name'] = "Unassigned";
+                        $nos = $nos-1;
+                      }
+                      if(mysql_num_rows($studentName3) == 0){
+                        $studentName3['name'] = "Unassigned";
+                        $nos = $nos-1;
+                      }
+                      if($nos != 0){
+                        echo "<tr><td>" . $row['group_id'] . "</td><td>" . $studentName1['name']. "</td><td>" . 
+                              $studentName2['name'] . "</td><td>" . $studentName3['name'] . "</td>";
+                        $groupID = $row['group_id'];
+                        //print($studentID);
+                        $report = mysql_query("SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
+                        if(mysql_num_rows($report)==1){
+                          echo "<td>&#10004</td></tr>";
+                        }else {
+                          echo "<td></td></tr>";
+                        }
                       }
                     }
                     mysql_close();
