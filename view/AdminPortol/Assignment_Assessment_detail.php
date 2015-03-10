@@ -85,10 +85,12 @@
             <ul class="nav nav-list">
               <a href="workspaceForAdmin.php">Main Page</a>
               <li class="nav-header">Student</li>
-              <li><a href="StudentManagement.php">View Students</a></li>
+              <li ><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
               <li><a href="GroupManagement.php">View Groups</a></li>
+              <li><a href="addGroups.php">Add Groups</a></li>
+              <li><a href="StudentEnrollment.php">Assign Student to groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li class="active"><a href="AssignmentManagement.php">View Assignments</a></li>
               <li class="nav-header">My Profile</li>
@@ -155,4 +157,4 @@
 
   
 
-<embed id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd" type="application/thunder_download_plugin" height="0" width="0"></body></html>v
+ 

@@ -83,12 +83,14 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <a href="student_main.php">Main Page</a>
+              <a href="workspaceForAdmin.php">Main Page</a>
               <li class="nav-header">Student</li>
-              <li><a href="StudentManagement.php">View Students</a></li>
+              <li ><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
               <li class="active"><a href="GroupManagement.php">View Groups</a></li>
+              <li><a href="addGroups.php">Add Groups</a></li>
+              <li><a href="StudentEnrollment.php">Assign Student to groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
               <li class="nav-header">My Profile</li>
@@ -111,30 +113,28 @@
               </thead>
               <tbody>
                 <?php
-                    $connect = mysql_connect("localhost","toor", "toor");
-                    if (!$connect) {
-                        die(mysql_error());
-                    }
-                    mysql_select_db("comp3013");
-                    
-                    $results = mysql_query("SELECT * FROM GROUPS");
-                    while($row = mysql_fetch_array($results)) {
+                    $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqlii_error($connection));                    
+                    $results = mysqli_query($connection,"SELECT * FROM GROUPS");
+                    while($row = mysqli_fetch_assoc($results)) {
                       $student1 = $row['student_1'];
                       $student2 = $row['student_2'];
                       $student3 = $row['student_3'];
                       $nos = 3;
-                      $studentName1 = mysql_fetch_row(mysql_query("SELECT name FROM students WHERE student_id = '$student1'"));
-                      $studentName2 = mysql_fetch_row(mysql_query("SELECT name FROM students WHERE student_id = '$student2'"));
-                      $studentName3 = mysql_fetch_row(mysql_query("SELECT name FROM students WHERE student_id = '$student3'"));
-                      if(mysql_num_rows($studentName1) == 0){
+                      $results1 = mysqli_query($connection,"SELECT name FROM students WHERE student_id = '$student1'");
+                      $results2 = mysqli_query($connection,"SELECT name FROM students WHERE student_id = '$student2'");
+                      $results3 = mysqli_query($connection,"SELECT name FROM students WHERE student_id = '$student3'");
+                      $studentName1 = mysqli_fetch_assoc(mysqli_query($connection,"SELECT name FROM students WHERE student_id = '$student1'"));
+                      $studentName2 = mysqli_fetch_assoc(mysqli_query($connection,"SELECT name FROM students WHERE student_id = '$student2'"));
+                      $studentName3 = mysqli_fetch_assoc(mysqli_query($connection,"SELECT name FROM students WHERE student_id = '$student3'"));
+                      if((string)$student1 == "" ){
                         $studentName1['name'] = "Unassigned";
                         $nos = $nos-1;
                       }
-                      if(mysql_num_rows($studentName2) == 0){
+                      if((string)$student2 == "" ){
                         $studentName2['name'] = "Unassigned";
                         $nos = $nos-1;
                       }
-                      if(mysql_num_rows($studentName3) == 0){
+                      if((string)$student3 == "" ){
                         $studentName3['name'] = "Unassigned";
                         $nos = $nos-1;
                       }
@@ -143,15 +143,14 @@
                               $studentName2['name'] . "</td><td>" . $studentName3['name'] . "</td>";
                         $groupID = $row['group_id'];
                         //print($studentID);
-                        $report = mysql_query("SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
-                        if(mysql_num_rows($report)==1){
+                        $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
+                        if(mysqli_num_rows($report)==1){
                           echo "<td>&#10004</td></tr>";
                         }else {
                           echo "<td></td></tr>";
                         }
                       }
                     }
-                    mysql_close();
                 ?>
 
               </tbody>
@@ -184,7 +183,3 @@
     <script src="./workspace_files/bootstrap-collapse.js"></script>
     <script src="./workspace_files/bootstrap-carousel.js"></script>
     <script src="./workspace_files/bootstrap-typeahead.js"></script>
-
-  
-
-<embed id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd" type="application/thunder_download_plugin" height="0" width="0"></body></html>v

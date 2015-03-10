@@ -83,12 +83,14 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <a href="student_main.php">Main Page</a>
+              <a href="workspaceForAdmin.php">Main Page</a>
               <li class="nav-header">Student</li>
-              <li><a href="StudentManagement.php">View Students</a></li>
+              <li ><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
-              <li class="active"><a href="GroupManagement.php">View Groups</a></li>
+              <li><a href="GroupManagement.php">View Groups</a></li>
+              <li><a href="addGroups.php">Add Groups</a></li>
+              <li class="active"><a href="StudentEnrollment.php">Assign Student to groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
               <li class="nav-header">My Profile</li>
@@ -100,15 +102,15 @@
           <br></br>
           <h2 class="sub-header">Enrol a student to a group</h2>
           <?php
-            foreach($_SESSION['enrerrors'] as $error){
+            if(isset($_SESSION['enrerrors'])){
                 echo '<font color="#FF0000">';
-                print($error);
+                print($_SESSION['enrerrors']);
                 echo '<br></br></font>';
             }
             unset($_SESSION['enrerrors']);
           ?>
           <form class="form-signin" action="enrAction.php" method="POST">
-              <h2 class="form-signin-heading">Please fill in student details</h2>
+              <h4 class="form-signin-heading">Please fill in student details</h2>
               <label for="stuid" class="sr-only" >Student ID to enrol</label>
               <input type="name" id="stuid" name="stuid" class="form-control" placeholder="Student ID" required="" autofocus="">         
               <br></br>    
@@ -120,15 +122,15 @@
           <br></br>
           <h2 class="sub-header">Unenrol a student from a group</h2>
           <?php
-            foreach($_SESSION['unrerrors'] as $error){
+            if(isset($_SESSION['unrerrors'])){
                 echo '<font color="#FF0000">';
-                print($error);
+                print($_SESSION['unrerrors']);
                 echo '<br></br></font>';
             }
             unset($_SESSION['unrerrors']);
           ?>
           <form class="form-signin" action="unrAction.php" method="POST">
-              <h2 class="form-signin-heading">Please fill in student details</h2>
+              <h4 class="form-signin-heading">Please fill in student details</h2>
               <label for="stuid" class="sr-only" >Student ID</label>
               <input type="name" id="stuid" name="stuid" class="form-control" placeholder="Student ID" required="" autofocus="">         
               <br></br>    
@@ -164,4 +166,4 @@
 
   
 
-<embed id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd" type="application/thunder_download_plugin" height="0" width="0"></body></html>v
+ v
