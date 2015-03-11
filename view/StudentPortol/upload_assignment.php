@@ -8,6 +8,7 @@
             print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
             exit;
         }
+    require '../rnsession.php';
     ?>
     <!DOCTYPE html>
 <html lang="en">

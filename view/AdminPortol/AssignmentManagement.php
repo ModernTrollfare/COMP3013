@@ -8,6 +8,8 @@
         print("Well - You do not have the permission to access this page. You will be redirected to you home page in 3 seconds.");
         exit;
     }
+    
+    require '../rnsession.php';
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
@@ -28,7 +30,14 @@
       .sidebar-nav {
         padding: 9px 0;
       }
-
+      .in.collapse+a.btn.showdetails:before
+      {
+          content:'Hide details «';
+      }
+      .collapse+a.btn.showdetails:before
+      {
+          content:'Show details »';
+      }
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
         .navbar-text.pull-right {
@@ -89,7 +98,7 @@
               <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
               <li><a href="GroupManagement.php">View Groups</a></li>
-              <li><a href="addGroups.php">Add Groups</a></li>
+              <li><a href="addGroups.php">Add/Remove groups</a></li>
               <li><a href="StudentEnrollment.php">Assign Student to groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li class = "active"><a href="AssignmentManagement.php">View Assignments</a></li>
@@ -101,7 +110,7 @@
         <div class="span9">
           <h2 class="sub-header">Assignment List</h2>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" style="width: 10%,10%,*;">
               <thead>
                 <tr>
                   <th>Group ID</th>
@@ -110,31 +119,23 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>99</td>
-                  <td><a class="btn" href="Assignment_Assessment_detail.php">Link</a></td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>99</td>
-                  <td><a class="btn" href="Assignment_Assessment_detail.php">Link</a></td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>99</td>
-                  <td><a class="btn" href="Assignment_Assessment_detail.php">Link</a></td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>99</td>
-                  <td><a class="btn" href="Assignment_Assessment_detail.php">Link</a></td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>99</td>
-                  <td><a class="btn" href="Assignment_Assessment_detail.php">Link</a></td>
-                </tr>
+                <?php
+                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+                $query = "SELECT report_id, AVG(grade) AS avggrade FROM ASSESSMENTS GROUP BY report_id";
+                $results = mysqli_query($connection,$query);
+                while($myrow = mysqli_fetch_assoc($results)) {
+                  $rid = $myrow['report_id'];
+                  $query = "SELECT group_id FROM REPORTS WHERE report_id = '$rid'";
+                  $temp = mysqli_fetch_assoc(mysqli_query($connection,$query));
+                  $gid = $temp['group_id'];
+                  echo "<tr><td>";
+                  print($gid);
+                  echo "</td><td>";
+                  print($myrow['avggrade']);
+                  $hashgid = sha1($gid);
+                  echo '</td><td><a class="btn" href="Assignment_Assessment_detail.php?gid='.$hashgid.'">Link</a></td></tr>';
+                }
+                ?>
               </tbody>
             </table>
           </div>

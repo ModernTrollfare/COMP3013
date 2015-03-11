@@ -8,6 +8,8 @@
         print("Well - You do not have the permission to access this page. You will be redirected to you home page in 3 seconds.");
         exit;
     }
+    
+    require '../rnsession.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +91,7 @@
               <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
               <li><a href="GroupManagement.php">View Groups</a></li>
-              <li><a href="addGroups.php">Add Groups</a></li>
+              <li><a href="addGroups.php">Add/Remove groups</a></li>
               <li><a href="StudentEnrollment.php">Assign Student to groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>

@@ -8,6 +8,7 @@
             print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
             exit;
         }
+    require '../rnsession.php';
     ?>
     <!DOCTYPE html>
 <html lang="en">
@@ -124,23 +125,22 @@
           </div>
 
           <?php
-            session_start();
             $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
 
             $gid = '123';
 
-            $query = "SELECT REPORTS.group_id, ASSESMENTS.content FROM ASSESMENTS, REPORTS WHERE ASSESMENTS.report_id = REPORTS.report_id AND ASSESMENTS.group_id ='$gid'";
+            $query = "SELECT REPORTS.group_id, ASSESSMENTS.content FROM ASSESSMENTS, REPORTS WHERE ASSESSMENTS.report_id = REPORTS.report_id AND ASSESSMENTS.group_id ='$gid'";
             $result = mysqli_query($connection, $query)
-              or die('Error Query'.mysql_error());
+              or die('Error Query'.mysqli_error($connection));
 
             $row = mysqli_fetch_array($result);
             
             while ($row != NULL) {
-              echo "<div class="hero-unit">
-                          <h3>Group $row['group_id']</h3>
-                          <p>substr($row['content'], 0 , 99)...</p>
+              echo '<div class="hero-unit">
+                          <h3>Group $row["group_id"]</h3>
+                          <p>substr($row["content"], 0 , 99)...</p>
                           <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
-                        </div>";
+                        </div>';
               $row = mysqli_fetch_array($result);
             };
             

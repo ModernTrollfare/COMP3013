@@ -8,6 +8,8 @@
         print("Well - You do not have the permission to access this page. You will be redirected to you home page in 3 seconds.");
         exit;
     }
+    
+    require '../rnsession.php';
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
@@ -89,7 +91,7 @@
               <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
               <li><a href="GroupManagement.php">View Groups</a></li>
-              <li><a href="addGroups.php">Add Groups</a></li>
+              <li><a href="addGroups.php">Add/Remove groups</a></li>
               <li><a href="StudentEnrollment.php">Assign Student to groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li class="active"><a href="AssignmentManagement.php">View Assignments</a></li>
@@ -108,25 +110,42 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Group ID</th>
-                  <th>Assessment</th>
-                  <th>Comment</th>
+                  <th>Assessing Group ID</th>
+                  <th>Marks Given</th>
+                  <!-- <th>Comment</th> -->
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>99</td>
-                  <td>comment</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>99</td>
-                  <td>comment</td>
-                </tr>                
+                <?php
+                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+                $gid = $_GET['gid'];
+                $flag = 1;
+                $test = 0;
+                while($flag){
+                  if(sha1($test) != $gid){
+                    $test += 1;
+                  }
+                  else{
+                    $flag = 0;
+                  }
+                }
+                $query = "SELECT report_id FROM REPORTS where group_id = '$test'";
+                $results = mysqli_fetch_assoc(mysqli_query($connection,$query));
+                $rid = $results['report_id'];
+                $query = "SELECT group_id,grade FROM ASSESSMENTS WHERE report_id = '$rid'";
+                $results = mysqli_query($connection,$query);
+                while($myrow = mysqli_fetch_assoc($results)) {
+                  echo "<tr><td>";
+                  print($myrow['group_id']);
+                  echo "</td><td>";
+                  print($myrow['grade']);
+                  echo '</td></tr>';
+                }
+                ?>              
               </tbody>
             </table>
           </div>
+      <button onclick="history.go(-1);">Go back</button>
         </div><!--/span-->
       </div><!--/row-->
 
