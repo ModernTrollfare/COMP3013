@@ -13,7 +13,7 @@
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Register New Student</title>
+    <title>View Asignments</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -28,7 +28,14 @@
       .sidebar-nav {
         padding: 9px 0;
       }
-
+      .in.collapse+a.btn.showdetails:before
+      {
+          content:'Hide details «';
+      }
+      .collapse+a.btn.showdetails:before
+      {
+          content:'Show details »';
+      }
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
         .navbar-text.pull-right {
@@ -86,38 +93,37 @@
               <a href="workspaceForAdmin.php">Main Page</a>
               <li class="nav-header">Student</li>
               <li ><a href="StudentManagement.php">View Students</a></li>
-              <li class="active"><a href="RegisterStudent.php">Register New Student</a></li>
+              <li><a href="RegisterStudent.php">Register New Student</a></li>
               <li class="nav-header">Group</li>
               <li><a href="GroupManagement.php">View Groups</a></li>
               <li><a href="addGroups.php">Add/Remove groups</a></li>
               <li><a href="StudentEnrollment.php">Assign Student to groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
-              <li><a href="AssignAssignmentManagement.php">Assign Group Assignments</a></li>
+              <li class = "active"><a href="AssignAssignmentManagement.php">Assign Group Assignments</a></li>
               <li class="nav-header">My Profile</li>
               <li><a href="AdminChangePassword.php">Change Password</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <div class="container">
-              <h2 class="form-signin-heading">Registered Student Details</h2>
-              <?php
-                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
-                $query = "SELECT * FROM STUDENTS WHERE student_id =(SELECT MAX(student_id) from STUDENTS)";
-                $result = mysqli_query($connection,$query) or die('Error making select users query' . mysqli_error($connection));;
-                $myrow = mysqli_fetch_assoc($result);
-                echo "<h3>Student Login ID:";
-                print($myrow['student_id']);
-                echo "<br>Student Password:";
-                print($myrow['pwd']);
-                echo "<br>Student Name:";
-                print($myrow['name']);
-                echo "<br>Please print the details out and give it out to the students.</h3>";
-              ?>
-          </div> <!-- /container -->            
+          <form class="navbar-form" action="student_upload_report.php" method="POST">
+            <div class="hero-unit">
+              <div class="input-group">
+                <!-- <input type="text" class="form-control" name="report_title" placeholder="Title" aria-describedby="basic-addon3"> -->
+              </div>
+
+              <div class="input-group">
+              <p><input type="text" class="form-control span 4" name="group_be_viewed" placeholder="The Group That Is Being Viewed" aria-describedby="basic-addon1"></p>
+              <p><input type="text" class="form-control span 4" name="group1_be_assigned" placeholder="The Group That Is Being Assigned" aria-describedby="basic-addon1"></p>
+              <p><input type="text" class="form-control span 4" name="group2_be_assigned" placeholder="The Group That Is Being Assigned" aria-describedby="basic-addon1"></p>
+              <p><input type="text" class="form-control span 4" name="group3_be_assigned" placeholder="The Group That Is Being Assigned" aria-describedby="basic-addon1"></p>
+              </div> 
+
+              <button type="submit" class="btn">Submit</button>
+            </div><!--/.fluid-container-->
+          </form>
         </div><!--/span-->
-        <button class="span3 btn btn-lg btn-primary btn-block" type="submit" href="RegisterStudent.php">Return to register another student</button>
       </div><!--/row-->
 
       <hr>
@@ -146,5 +152,3 @@
     <script src="./workspace_files/bootstrap-typeahead.js"></script>
 
   
-
-</body></html>
