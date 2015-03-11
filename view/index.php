@@ -13,7 +13,7 @@
             $_SESSION['password'] = $user["Password"];
             $_SESSION['usertype'] = $user["usertype"];
             $json = json_encode($user);
-            setcookie("uinf", $json, time()+(60*60*6));
+            setcookie("uinf", $json, time()+(60*60*6),$_SERVER['DOCUMENT_ROOT']."/master/view/");
             if($user["usertype"] == '0'){
                 header('Location: AdminPortol/workspaceForAdmin.php');
             }

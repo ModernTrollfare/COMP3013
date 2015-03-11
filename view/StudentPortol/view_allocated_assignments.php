@@ -8,7 +8,6 @@
             print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
             exit;
         }
-    require '../rnsession.php';
     ?>
     <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +28,6 @@
       .sidebar-nav {
         padding: 9px 0;
       }
-
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
         .navbar-text.pull-right {
@@ -103,7 +101,7 @@
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
-              <li class="active"><a href="view_allocated_assignments.php">Viewing Allocated Assignments</a></li>
+              <li class="active"><a href="view_allocated_assignments.php">Assessing other groups</a></li>
               <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
@@ -116,39 +114,91 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
-          <div class="hero-unit">
-            <h3>Viewing Allocated Assignments</h3>
-            <p>If you have uploaded before, the content will be shown at the bottom</p>
-            <p>If you are going to upload your latest version, please press the 'Upload Button'</p>
-            <!-- <p><a href="#" class="btn btn-primary btn-large">Upload </a></p> -->
-          </div>
-
-          <?php
+        <?php
             $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
-
-            $gid = '123';
-
-            $query = "SELECT REPORTS.group_id, ASSESSMENTS.content FROM ASSESSMENTS, REPORTS WHERE ASSESSMENTS.report_id = REPORTS.report_id AND ASSESSMENTS.group_id ='$gid'";
+            $stuid = $_SESSION['userid'];
+            $query = "SELECT * FROM GROUPS WHERE student_1 = '$stuid' OR student_2 = '$stuid' OR student_3 = '$stuid'";
             $result = mysqli_query($connection, $query)
               or die('Error Query'.mysqli_error($connection));
-
-            $row = mysqli_fetch_array($result);
-            
-            while ($row != NULL) {
-              echo '<div class="hero-unit">
-                          <h3>Group $row["group_id"]</h3>
-                          <p>substr($row["content"], 0 , 99)...</p>
-                          <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p>
-                        </div>';
-              $row = mysqli_fetch_array($result);
-            };
-            
-
-            mysqli_close($connection);
+        ?>
+        <div class="span9">
+          <div class="hero-unit">
+            <?php
+            if(mysqli_num_rows($result) == 0){
+              echo '<pre>Seems that your teacher have not allocated to a group yet! Please contact him as soon as possible.</pre><br></br>';
+              exit;
+            }
+            ?>
+            <h3>Upload Assessments/Assessment records</h3>
+            <p>You can upload or update your assessment for other groups here.</p>
+            <p>Your latest assessments for each group are shown below.</p>
+            <p>Click "Add new assessments" to add new assessments, or "Fetch Reports" to get other groups reports.</p>
+            <p><a href="addAssess.php" class="btn">Add new assessments</a></p>
+            <form action="getReport.php" method="POST">
+            <p><label class="" for="fetchid">Get Report of group:</label>
+            <select class="span2" name="fetchid" id="fetchid">
+            <?php
+            $tmp = mysqli_fetch_assoc($result);
+            $owngrp = $tmp['group_id'];
+            $results = mysqli_query($connection,"SELECT * FROM GROUPS");
+            while($row = mysqli_fetch_assoc($results)) {                          
+                $student1 = $row['student_1'];
+                $student2 = $row['student_2'];
+                $student3 = $row['student_3'];
+                $nos = 3;
+                $rowgid = $row['group_id'];
+              if((string)$student1 == "" ){
+                $studentName1['name'] = "Unassigned";
+                $nos = $nos-1;
+              }
+              if((string)$student2 == "" ){
+                $studentName2['name'] = "Unassigned";
+                $nos = $nos-1;
+              }
+              if((string)$student3 == "" ){
+                $studentName3['name'] = "Unassigned";
+                $nos = $nos-1;
+              }
+              if($nos != 0 && ($row['group_id']!= $owngrp)){
+                $query = "SELECT * FROM REPORTS WHERE group_id = '$rowgid'";
+                $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
+                if(mysqli_num_rows($report) != 0){                  
+                  echo '<option value="'.$row['group_id'].'">'.$row['group_id'].'</option>';
+                }
+              }
+            }
           ?>
-          
-          
+        </select></form><button type="submit" class="btn">Fetch Report</button></div>
+            <?php
+              $gid = $owngrp;
+              $query = "SELECT REPORTS.group_id, ASSESSMENTS.comments, ASSESSMENTS.grade,Assessments.Assessment_id FROM ASSESSMENTS, REPORTS WHERE ASSESSMENTS.report_id = REPORTS.report_id AND ASSESSMENTS.group_id ='$gid'";
+              $result = mysqli_query($connection, $query)
+                or die('Error Query'.mysqli_error($connection));
+            ?>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Group Assessed</th>
+                  <th>Marks Given</th>
+                  <th width=70%>Comments Given</th>
+                </tr>
+              </thead>
+            <?php
+                  $row = mysqli_fetch_assoc($result);
+                  $hashaid = sha1(md5($row['Assessment_id']));
+              while ($row != NULL) {
+                echo '<tr><td>'.$row["group_id"].'</td>
+                            <td>'.$row["grade"].'</td>
+                            <td><a href="view_each_allocated_assignments.php?aid='.$hashaid.'" class="btn">View Full Comments</a></td>
+                          </tr>';
+                $row = mysqli_fetch_array($result);
+              };
+            mysqli_close($connection);
+            ?>
+              </tbody>
+            </table>
+          </div> 
         </div><!--/span-->
       </div><!--/row-->
 

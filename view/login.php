@@ -27,6 +27,8 @@
 		exit;
 	}
 	$myrow = mysqli_fetch_assoc($result);
+
+	session_unset();
 	//var_dump($myrow);
 	//exit;
 	$_SESSION['userid'] = $user["userid"];
@@ -36,7 +38,7 @@
 	$_SESSION['usertype'] = $usertype;
 	$json = json_encode($user);
 
-	setcookie("uinf", $json, time()+(60*60*6));	
+	setcookie("uinf", $json, time()+(60*60*6),$_SERVER['DOCUMENT_ROOT']."/master/view/");	
 	if($usertype == '0'){
 		header('Location: AdminPortol/workspaceForAdmin.php');
 	}

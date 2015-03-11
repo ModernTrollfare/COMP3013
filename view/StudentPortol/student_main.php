@@ -9,7 +9,6 @@
             exit;
         }
         
-    require '../rnsession.php';
     ?>
     <!DOCTYPE html>
 <html lang="en">

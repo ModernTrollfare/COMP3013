@@ -9,7 +9,6 @@
             print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
             header('Refresh: 5; URL= ../index.php');
         }
-    require '../rnsession.php';
     ?>
   <head>
     <meta charset="utf-8">

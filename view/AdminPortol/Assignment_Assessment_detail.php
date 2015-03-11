@@ -8,8 +8,6 @@
         print("Well - You do not have the permission to access this page. You will be redirected to you home page in 3 seconds.");
         exit;
     }
-    
-    require '../rnsession.php';
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
@@ -29,6 +27,14 @@
       }
       .sidebar-nav {
         padding: 9px 0;
+      }
+      .in.collapse+a.btn.showdetails:before
+      {
+          content:'Hide comments «';
+      }
+      .collapse+a.btn.showdetails:before
+      {
+          content:'Show comments »';
       }
 
       @media (max-width: 980px) {
@@ -112,7 +118,7 @@
                 <tr>
                   <th>Assessing Group ID</th>
                   <th>Marks Given</th>
-                  <!-- <th>Comment</th> -->
+                  <th width=70%>Comment</th>
                 </tr>
               </thead>
               <tbody>
@@ -132,13 +138,15 @@
                 $query = "SELECT report_id FROM REPORTS where group_id = '$test'";
                 $results = mysqli_fetch_assoc(mysqli_query($connection,$query));
                 $rid = $results['report_id'];
-                $query = "SELECT group_id,grade FROM ASSESSMENTS WHERE report_id = '$rid'";
+                $query = "SELECT group_id,grade,comments FROM ASSESSMENTS WHERE report_id = '$rid'";
                 $results = mysqli_query($connection,$query);
                 while($myrow = mysqli_fetch_assoc($results)) {
                   echo "<tr><td>";
                   print($myrow['group_id']);
                   echo "</td><td>";
                   print($myrow['grade']);
+                  echo '</td><td>';
+                  print($myrow['comments']);
                   echo '</td></tr>';
                 }
                 ?>              

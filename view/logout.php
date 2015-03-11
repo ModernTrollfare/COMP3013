@@ -4,7 +4,8 @@
 	$_SESSION = array();
 	// Expire their cookie files
 	if(isset($_COOKIE["uinf"])) {
-		setcookie("uinf",'',1);
+		setcookie("uinf",'',1,$_SERVER['DOCUMENT_ROOT']."/master/view/");
+		unset($_COOKIE["uinf"]);
 		sleep(1);
 	}
 	// Destroy the session variables

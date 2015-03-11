@@ -8,12 +8,13 @@
             print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
             exit;
         }
+     
     ?>
     <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>View Assignment</title>
+    <title>View Assignments</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -28,7 +29,6 @@
       .sidebar-nav {
         padding: 9px 0;
       }
-
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
         .navbar-text.pull-right {
@@ -102,7 +102,7 @@
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
-              <li class="active"><a href="view_allocated_assignments.php">Viewing Allocated Assignments</a></li>
+              <li class="active"><a href="view_allocated_assignments.php">Assessing other groups</a></li>
               <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
@@ -117,22 +117,75 @@
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-
-            <?php
-            for($test = 0;$test<500; $test+=1){
-              $hashaid = sha1(md5($test));
-              if($hashaid == $_GET['aid']){
-                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
-                $query = "SELECT comments FROM Assessments WHERE assessment_id='$test'";
-                $result = mysqli_fetch_assoc(mysqli_query($connection,$query));
-                echo '<h3>Comments to group '.$test.'</h3>
-                        <pre>'.$result['comments']."</pre>";
-                break;
-              } 
-            }
-            ?><a class="btn" style="float:right" href="view_allocated_assignments.php">Go Back</a>
-            <!-- <p><a href="#" class="btn btn-primary btn-large">Upload </a></p> -->
-          </div>            
+            <h3>Upload Assessment</h3>
+              <form action="uploadassessments.php" method="POST">
+                    <?php
+                          if(isset($_SESSION['uass'])){
+                              echo '<font color="#FF0000">';
+                              print($_SESSION['uass']);
+                              echo '<br></br></font>';
+                          }
+                          unset($_SESSION['uass']);
+                    ?>
+                      <p><label class="" for="assessedgrp">Group to be assessed</label>
+                      <select class="span2" name="assessedgrp" id="assessedgrp">
+                      <?php
+                        $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                        $stuid = $_SESSION['userid'];
+                        $query = "SELECT * FROM GROUPS WHERE student_1 = '$stuid' OR student_2 = '$stuid' OR student_3 = '$stuid'";
+                        $results = mysqli_query($connection,$query);
+                        $tmp = mysqli_fetch_assoc($results);
+                        $owngrp = $tmp['group_id'];
+                        $results = mysqli_query($connection,"SELECT * FROM GROUPS");
+                        while($row = mysqli_fetch_assoc($results)) {                          
+                            $student1 = $row['student_1'];
+                            $student2 = $row['student_2'];
+                            $student3 = $row['student_3'];
+                            $nos = 3;
+                          if((string)$student1 == "" ){
+                            $studentName1['name'] = "Unassigned";
+                            $nos = $nos-1;
+                          }
+                          if((string)$student2 == "" ){
+                            $studentName2['name'] = "Unassigned";
+                            $nos = $nos-1;
+                          }
+                          if((string)$student3 == "" ){
+                            $studentName3['name'] = "Unassigned";
+                            $nos = $nos-1;
+                          }
+                          if($nos != 0 && ($row['group_id']!= $owngrp)){
+                            $query = "SELECT * FROM REPORTS WHERE group_id = '$rowgid'";
+                            $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
+                            if(mysqli_num_rows($report) != 0){                  
+                              echo '<option value="'.$row['group_id'].'">'.$row['group_id'].'</option>';
+                            }
+                          }
+                        }
+                        $_SESSION['owngrp'] = $owngrp;
+                      ?>
+                      </select>
+                      </p>
+                      <p><label class="" for"marks">Marks Given</label>
+                      <select class="span2" name="marks" id="marks">
+                        <?php
+                        for($i = 0; $i <= 100; $i+=1){
+                          echo '<option value="'.$i.'">'.$i.'</option>';
+                        }
+                        ?>
+                      </select>
+                      </p>
+                      <p><label class="" for"comments">Comments to the report</label>
+                      <textarea name="comments" id="comments" placeholder="Contents Here...." style="resize: none; width:750px ;height: 150px;"></textarea></p>
+                      <p><button type="submit" class="btn btn-primary">Upload Assessment</button>
+                      <a class="btn" style="float:right" href="view_allocated_assignments.php" onclick="return confirm('Are you sure? You will lose anything unsaved.');">Give up and go back</a>
+                     </p>
+                    </form>
+                  
+           </div>
+          <?php
+            mysqli_close($connection);
+          ?>     
         </div><!--/span-->
       </div><!--/row-->
 

@@ -8,11 +8,12 @@
             $cookie = stripslashes($cookie);
             $user = json_decode($cookie, true);   
             session_unset();
-            $_SESSION['user'] = $user["UserID"];
+            $_SESSION['userid'] = $user["userid"];
+            $_SESSION['username'] = $user["username"];
             $_SESSION['password'] = $user["Password"];
-            $_SESSION['usertype'] = $user["Usertype"];
+            $_SESSION['usertype'] = $user["usertype"];
             $json = json_encode($user);
-            setcookie("uinf", $json, time()+(60*60*6));
+            setcookie("uinf", $json, time()+(60*60*6),$_SERVER['DOCUMENT_ROOT']."/master/view/");
             }
     ?>
     <meta charset="utf-8">
@@ -95,7 +96,7 @@
             <?php
             if(isset($_COOKIE['uinf'])){
                 echo '<form class="navbar-form pull-right" action="logout.php">'."\n";
-                echo '<span class="input-group-addon" id="user-greeting" style="color:white">Hi '.$_SESSION['user'].'</span>'."\n";
+                echo '<span class="input-group-addon" id="user-greeting" style="color:white">Hi '.$_SESSION['username'].'</span>'."\n";
                 echo '<button type="submit" class="btn">Sign Out</button>'."\n";
                 echo '</form>'."\n";
             }

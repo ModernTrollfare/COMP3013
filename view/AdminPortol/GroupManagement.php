@@ -8,8 +8,6 @@
         print("Well - You do not have the permission to access this page. You will be redirected to you home page in 3 seconds.");
         exit;
     }
-    
-    require '../rnsession.php';
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->

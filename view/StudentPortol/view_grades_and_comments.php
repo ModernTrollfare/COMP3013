@@ -8,7 +8,6 @@
             print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
             exit;
         }
-    require '../rnsession.php';
     ?>
     <!DOCTYPE html>
 <html lang="en">
@@ -119,33 +118,52 @@
         <div class="span9">
           <div class="hero-unit">
             <h3>Viewing Gardes and Comments from Others</h3>
-            <p>This Page will show all the grades and comments which are given by other groups</p>
+            <p>This Page will show all the grades and comments which are given by other groups.</p>
+            <?php
+              $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+              $stuid = $_SESSION['userid'];
+              $query = "SELECT group_id FROM GROUPS WHERE student_1 = '$stuid' OR student_2 = '$stuid' OR student_3 = '$stuid'";
+              $result = mysqli_query($connection, $query)
+                or die('Error Query'.mysqli_error($connection));
+              $temp = mysqli_fetch_assoc($result);
+              $gid = $temp['group_id'];
+              $query = "SELECT report_id, AVG(grade) AS avggrade FROM ASSESSMENTS WHERE report_id = (SELECT report_id FROM REPORTS WHERE group_id = '$gid') GROUP BY report_id";
+              $result = mysqli_query($connection,$query)
+                or die('Error Query'.mysqli_error($connection));;
+              $temp = mysqli_fetch_assoc($result);
+              $rid = $temp['report_id'];
+              echo '<p>Your current average mark(given by other groups): <b>'.$temp['avggrade'].'</b></p><br></br>';
+            ?>
             <!-- <p><a href="#" class="btn btn-primary btn-large">Upload </a></p> -->
+          <h2 class="sub-header">Assessments Received</h2>
+          <div class="table-responsive">
+            <table class="table table-striped" style="width: 10%,10%,*;">
+              <thead>
+                <tr>
+                  <th>Group</th>
+                  <th>Grade Given</th>
+                  <th>Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+            <?php
+              $query = "SELECT group_id,grade,comments FROM ASSESSMENTS WHERE report_id = '$rid'";
+              $result = mysqli_query($connection, $query)
+                or die('Error Query'.mysqli_error($connection));
+              while($temp = mysqli_fetch_assoc($result)){
+                  echo "<tr><td>";
+                  print($temp['group_id']);
+                  echo "</td><td>";
+                  print($temp['grade']);
+                  echo "</td><td><pre>";
+                  print($temp['comments']);
+                  echo "</pre></td></tr>";
+                }
+                ?>
+              </tbody>
+            </table>
           </div>
-
-          <div class="hero-unit">
-            <!-- <h2>[Group Number]</h2> -->
-            <p><span class="badge">Grade: [0-5]</span></p>
-            <p><span class="label">Comment: [.....................]</span></p>
-            <p></p>
-            <p></p>
-            <p><span class="badge">Grade: [0-5]</span></p>
-            <p><span class="label">Comment: [.....................]</span></p>
-            <p></p>
-            <p></p>
-            <p><span class="badge">Grade: [0-5]</span></p>
-            <p><span class="label">Comment: [.....................]</span></p>
-            <p></p>
-            <p></p>
-            <p><span class="badge">Grade: [0-5]</span></p>
-            <p><span class="label">Comment: [.....................]</span></p>
-            <p></p>
-            <p></p>
-            <!-- <p><a href="view_each_allocated_assignments.php" class="btn btn-primary btn-large">View More </a></p> -->
-          </div>
-          
-          
-          
+        </div>
         </div><!--/span-->
       </div><!--/row-->
 

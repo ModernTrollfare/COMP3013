@@ -18,7 +18,7 @@
       }
       if($nos == 0){
       	$_SESSION['adderrors'] = "You already have an empty group. Please enroll students to group ".$row['group_id']." before you add a new group.";
-      	header('Location:addGroups.php');
+        header('Location:addGroups.php');
       	exit;
       }
     }
