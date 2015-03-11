@@ -36,10 +36,10 @@
         padding-bottom: 40px;
       }
     </style>
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- Custom styles for login template -->
-    <link href="../lib/css/signin.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/signin.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
