@@ -101,7 +101,7 @@
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
-              <li><a href="view_allocated_assignments.php">Assessing other groups</a></li>
+              <li><a href="view_allocated_assignments.php">Viewing Allocated Assignments</a></li>
               <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
