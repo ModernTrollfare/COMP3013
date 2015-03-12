@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <?php session_start();
-        if(!((isset($_SESSION['user']))&&(isset($_SESSION['password'])))){
-            $_SESSION['errors'] = array("Please Login before proceeding.");
+    <?php session_start();
+        if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
             header("Location: ../index.php");
+            $_SESSION['errors'] = array("Please Login before proceeding.");
         }
-        if($_SESSION['Usertype'] != '1'){
-            print("Well - You do not have the permission to access this page. You will be redirected to you home page in 5 seconds.");
-            header('Refresh: 5; URL= ../index.php');
+        else if($_SESSION['usertype'] != '1'){
+            header("Refresh:3;url=../index.php");
+            print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
+            exit;
         }
+      
     ?>
+    <!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Upload Assignment</title>
+    <title>Change Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -81,8 +83,8 @@
                 </ul>
               </li> -->
             </ul>
-            <form class="navbar-form pull-right">
-              <span class="input-group-addon" id="user-greeting" style="color:white">Hi User</span>
+            <form class="navbar-form pull-right" action="../logout.php">
+              <span class="input-group-addon" id="user-greeting" style="color:white">Hi <?php print($_SESSION['username']);?></span>
               <button type="submit" class="btn">Sign Out</button>
             </form>
           </div><!--/.nav-collapse -->
@@ -95,10 +97,10 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <a href="student_main.php">Main Page</a>
+              <li><a href="student_main.php">Main Page</a></li>
               <li class="nav-header">Assignments</li>
-              <li class="active"><a href="upload_assignment.php">Uploading</a></li>              
-              <li><a href="student_rank.php">Ranking</a></li>
+              <li><a href="upload_assignment.php">Uploading Assignments</a></li>
+              <li class = "active"><a href="student_rank.php">Ranking</a></li>              
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
@@ -116,20 +118,82 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <form class="navbar-form" action="student_upload_report.php" method="POST">
-            <div class="hero-unit">
-              <div class="input-group">
-                <!-- <input type="text" class="form-control" name="report_title" placeholder="Title" aria-describedby="basic-addon3"> -->
-              </div>
+          <div class="hero-unit">
+            <h3>Rankings (By aggregated Marks)</h3>
+                <?php 
+                  if (isset($_SESSION['errors'])){
+                    // echo '<font color= "#FF0000">';
+                    // echo("{$_SESSION['errors']}"."</font><br />");
+                    foreach($_SESSION['errors'] as $error){
+                      echo '<font color= "#FF0000">';
+                      echo("{$error}"."</font><br />");
+                    }
+                  }
+                  unset($_SESSION['errors']);
+                ?>
+                <a href="student_rank_avg.php" class="btn">Sort by average marks instead</a>
+            <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">Rank</th>
+                  <th style="width: 25%;">Group</th>
+                  <th style="width: 25%;">Aggregate Marks</th>
+                  <th style="width: 25%;">Average Marks</th>
+                </tr>
+              </thead>
+            <?php
+              $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+              $stuid = $_SESSION['userid'];
+              $query = "SELECT * FROM GROUPS WHERE student_1 = '$stuid' OR student_2 = '$stuid' OR student_3 = '$stuid'";
+              $result = mysqli_query($connection, $query)
+                or die('Error Query'.mysqli_error($connection));
+              $tmp = mysqli_fetch_assoc($result);
+              $gid = $tmp['group_id'];
+              $query ="SELECT SUM(ASSessments.grade) AS gradesum,
+                              AVG(assessments.grade) AS gradeavg,
+                              reports.group_id 
+                      FROM ASSESSMENTS,REPORTS 
+                      WHERE assessments.report_id = reports.report_id 
+                      GROUP BY assessments.report_id 
+                      ORDER BY SUM(ASSessments.grade) ASC";
+              $result = mysqli_query($connection, $query)
+                or die('Error Query'.mysqli_error($connection));
+                $i = 1;
+              while ($row = mysqli_fetch_assoc($result)) {
+                if($row['group_id'] == $gid){
+                  echo '<tr style="background-color:#5555FF"><td>'.$i.'</td>';
+                }
+                else{
+                  echo '<tr><td>'.$i.'</td>';
+                }
+                echo'
+                            <td>'.$row["group_id"].'</td>
+                            <td>'.$row["gradesum"].'</td>
+                            <td>'.$row["gradeavg"].'</td>
+                          </tr>';
+                $i += 1;
+              };
+            mysqli_close($connection);
+            ?>
+              </tbody>
+            </table>
+          </div> 
+          </div>
+          
+          
+          
+        </div><!--/span-->
+      </div><!--/row-->
 
-              <div class="input-group">
-              <input type="text" class="form-control" name="report_content" placeholder="Reports Content" aria-describedby="basic-addon1">
-              </div> 
+      <hr>
 
-              <button type="submit" class="btn">Submit</button>
-            </div><!--/.fluid-container-->
-          </form>
-        </div>
+      <footer>
+        <p>&copy; Peer Assessment System</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
