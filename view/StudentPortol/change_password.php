@@ -119,10 +119,25 @@
         <div class="span9">
           <div class="hero-unit">
             <h3>Change Personal Password</h3>
-            <p><input class="span6" type="password" placeholder="Please Type in Your Old Password" name="OldPassword" required=""></p>
-            <p><input class="span6" type="password" placeholder="Please Type in Your New Password" name="NewPassword1" required=""></p>
-            <p><input class="span6" type="password" placeholder="Please Retype Your New Password" name="NewPassword2" required=""></p>
-            <p><a href="#" class="btn btn-primary btn-large">Submit </a></p>
+                <?php 
+                  if (isset($_SESSION['errors'])){
+                    // echo '<font color= "#FF0000">';
+                    // echo("{$_SESSION['errors']}"."</font><br />");
+                    foreach($_SESSION['errors'] as $error){
+                      echo '<font color= "#FF0000">';
+                      echo("{$error}"."</font><br />");
+                    }
+                  }
+                  unset($_SESSION['errors']);
+                ?>
+
+
+            <form action="../changepw.php" method="POST">
+                <p><input class="span6" type="password" placeholder="Please Type in Your Old Password" name="OldPassword" required=""></p>
+                <p><input class="span6" type="password" placeholder="Please Type in Your New Password" name="NewPassword1" required=""></p>
+                <p><input class="span6" type="password" placeholder="Please Retype Your New Password" name="NewPassword2" required=""></p>
+                <button type="submit" class="btn btn-primary btn-large">Submit</button>
+            </form>
           </div>
           
           
