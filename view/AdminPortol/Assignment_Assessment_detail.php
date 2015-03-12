@@ -109,21 +109,7 @@
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Assignment Detail</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-          </div>
-          <h2 class="sub-header">Assessment</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Assessing Group ID</th>
-                  <th>Marks Given</th>
-                  <th width=70%>Comment</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
+            <?php
                 $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
                 $gid = $_GET['gid'];
                 $flag = 1;
@@ -136,6 +122,30 @@
                     $flag = 0;
                   }
                 }
+            ?>
+            <h1>Assignment Detail</h1>
+                      <?php
+                      echo '<p>Group '.$test.':</p>';
+            $query = "SELECT last_modified ,xml_file FROM REPORTS WHERE group_id = '$gid'";
+            $result = mysqli_query($connection, $query)
+              or die('Error Query'.mysqli_error($connection));
+            $temp = mysqli_fetch_assoc($result);
+              echo '<p>Last Upload Date: '.$temp['last_modified']."</p>";
+              echo '<a href="../'.$temp['xml_file'].'" class="btn"> View Assignment File</a>';
+          ?>
+          </div>
+          <h2 class="sub-header">Assessment</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Assessing Group ID</th>
+                  <th>Marks Given</th>
+                  <th width=70%>Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php
                 $query = "SELECT report_id FROM REPORTS where group_id = '$test'";
                 $results = mysqli_fetch_assoc(mysqli_query($connection,$query));
                 $rid = $results['report_id'];

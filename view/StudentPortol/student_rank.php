@@ -119,6 +119,7 @@
         <div class="span9">
           <div class="hero-unit">
             <h3>Rankings (By aggregated Marks)</h3>
+              <p> Students can only see the rankings of themselves and the groups they already assessed.</p> 
                 <?php 
                   if (isset($_SESSION['errors'])){
                     // echo '<font color= "#FF0000">';
@@ -154,6 +155,7 @@
                               reports.group_id 
                       FROM ASSESSMENTS,REPORTS 
                       WHERE assessments.report_id = reports.report_id 
+                      AND   (assessments.group_id = '$gid' OR reports.group_id = '$gid')
                       GROUP BY assessments.report_id 
                       ORDER BY SUM(ASSessments.grade) ASC";
               $result = mysqli_query($connection, $query)

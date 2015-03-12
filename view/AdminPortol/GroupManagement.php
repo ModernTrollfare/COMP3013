@@ -144,9 +144,10 @@
                               $studentName2['name'] . "</td><td>" . $studentName3['name'] . "</td>";
                         $groupID = $row['group_id'];
                         //print($studentID);
-                        $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
+                        $report = mysqli_query($connection,"SELECT report_id,xml_file FROM REPORTS WHERE group_id = '$groupID'");
                         if(mysqli_num_rows($report)==1){
-                          echo "<td>&#10004</td></tr>";
+                          $myrow = mysqli_fetch_assoc($report);
+                          echo '<td>&#10004<a href="../'.$myrow['xml_file'].'" class="btn">Get File</a></td></tr>';
                         }else {
                           echo "<td></td></tr>";
                         }
