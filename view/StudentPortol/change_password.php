@@ -99,7 +99,8 @@
             <ul class="nav nav-list">
               <li><a href="student_main.php">Main Page</a></li>
               <li class="nav-header">Assignments</li>
-              <li><a href="upload_assignment.php">Uploading</a></li>
+              <li><a href="upload_assignment.php">Uploading Assignments</a></li>
+              <li><a href="student_rank.php">Ranking</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>

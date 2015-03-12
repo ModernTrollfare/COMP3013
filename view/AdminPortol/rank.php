@@ -3,7 +3,7 @@
             header("Location: ../index.php");
             $_SESSION['errors'] = array("Please Login before proceeding.");
         }
-        else if($_SESSION['usertype'] != '1'){
+        else if($_SESSION['usertype'] != '0'){
             header("Refresh:3;url=../index.php");
             print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
             exit;
@@ -105,6 +105,7 @@
               <li class="nav-header">Assessments</li>
               <li><a href="view_allocated_assignments.php">Assessing other groups</a></li>
               <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
+              <li class = "active"><a href="rank.php">Ranking</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
