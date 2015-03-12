@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2015 at 01:04 AM
+-- Generation Time: Mar 12, 2015 at 02:14 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -78,7 +78,8 @@ CREATE TABLE IF NOT EXISTS `assignations` (
   `group_to_be_assessed` int(11) NOT NULL,
   `group_assessing` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`group_to_be_assessed`,`group_assessing`),
-  KEY `group_to_be_assessed` (`group_to_be_assessed`,`group_assessing`)
+  KEY `group_to_be_assessed` (`group_to_be_assessed`,`group_assessing`),
+  KEY `group_assessing` (`group_assessing`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -169,6 +170,13 @@ INSERT INTO `students` (`student_id`, `name`, `pwd`) VALUES
 ALTER TABLE `assessments`
   ADD CONSTRAINT `assessments_ibfk_1` FOREIGN KEY (`report_id`) REFERENCES `reports` (`report_id`),
   ADD CONSTRAINT `assessments_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `reports` (`group_id`);
+
+--
+-- Constraints for table `assignations`
+--
+ALTER TABLE `assignations`
+  ADD CONSTRAINT `assignations_ibfk_2` FOREIGN KEY (`group_assessing`) REFERENCES `groups` (`group_id`),
+  ADD CONSTRAINT `assignations_ibfk_1` FOREIGN KEY (`group_to_be_assessed`) REFERENCES `groups` (`group_id`);
 
 --
 -- Constraints for table `groups`
