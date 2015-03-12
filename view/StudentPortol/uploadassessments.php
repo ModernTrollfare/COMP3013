@@ -17,12 +17,12 @@
 		$query = "UPDATE ASSESSMENTS SET grade = '$grade', comments = '$cm' WHERE assessment_id = '$nid'";
 	}
 	else{ 
-		$query = "SELECT MAX(assessment_id) AS max FROM REPORTS";
+		$query = "SELECT MAX(assessment_id) AS max FROM ASSESSMENTS";
 		$result = mysqli_fetch_assoc(mysqli_query($connection,$query));
 		$nid = $result['max']+1;
-		$query = "INSERT INTO ASSESSMENTS (assessment_id,grade,comment) VALUES ('$nid','$grade','$max');";
+		$query = "INSERT INTO ASSESSMENTS (assessment_id,grade,comments) VALUES ('$nid','$grade','$cm');";
 	}
-	$result = mysqli_query($connection,$query) or die("ERROR inserting".mysqli_error($connection));
+	$result = mysqli_query($connection,$query) or die("ERROR inserting".$query.mysqli_error($connection));
 	mysqli_close($connection);
 	$_SESSION['uass'] = "Assessment ".$nid." is added/updated successfully.";
 	header('Location: addAssess.php');

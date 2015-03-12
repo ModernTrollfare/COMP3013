@@ -94,6 +94,7 @@
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
               <li><a href="AssignAssignmentManagement.php">Assign Group Assignments</a></li>
+              <li><a href="rank.php">Ranking</a></li>
               <li class="nav-header">My Profile</li>
               <li><a href="AdminChangePassword.php">Change Password</a></li>
             </ul>
@@ -108,6 +109,7 @@
               <br></br>    
               <button class="span3 btn btn-lg btn-primary btn-block" type="submit">Register</button>
             </form>
+
           </div> <!-- /container -->            
         </div><!--/span-->
 

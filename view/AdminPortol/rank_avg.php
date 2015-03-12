@@ -105,6 +105,7 @@
               <li class="nav-header">Assessments</li>
               <li><a href="view_allocated_assignments.php">Assessing other groups</a></li>
               <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
+              <li class = "active"><a href="rank.php">Ranking</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>

@@ -104,14 +104,14 @@
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
               <li><a href="view_allocated_assignments.php">Assessing other groups</a></li>
-              <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
+              <li calss = "active"><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Personal and Group Details</li>
               <li><a href="change_group_details.php">Changing Group Details</a></li>
-              <li class="active"><a href="change_password.php">Changing Personal Password</a></li>
+              <li><a href="change_password.php">Changing Personal Password</a></li>
               <!-- <li><a href="#">Link</a></li> -->
             </ul>
           </div><!--/.well -->

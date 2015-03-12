@@ -98,7 +98,8 @@
             <ul class="nav nav-list">
               <li><a href="student_main.php">Main Page</a></li>
               <li class="nav-header">Assignments</li>
-              <li><a href="upload_assignment.php">Uploading</a></li>
+              <li><a href="upload_assignment.php">Uploading Assignments</a></li>
+              <li><a href="student_rank.php">Ranking</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
@@ -136,6 +137,7 @@
                         $results = mysqli_query($connection,$query);
                         $tmp = mysqli_fetch_assoc($results);
                         $owngrp = $tmp['group_id'];
+                    
                         $results = mysqli_query($connection,"SELECT * FROM GROUPS");
                         // while($row = mysqli_fetch_assoc($results)) {                          
                         //     $student1 = $row['student_1'];
@@ -155,10 +157,11 @@
                         //     $nos = $nos-1;
                         //   }
                         //   if($nos != 0 && ($row['group_id']!= $owngrp)){
-                            $query = "SELECT * FROM ASSIGNATIONS WHERE group_assessing = '$rowgid'";
-                            $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
-                            if(mysql_num_rows($report) != 0){  
-                              while(mysqli_fetch_assoc($report)){                
+                            $query = "SELECT group_to_be_assessed FROM ASSIGNATIONS WHERE group_assessing = '$owngrp'";
+                            //$report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
+                            $report = mysqli_query($connection,$query);
+                            if(mysqli_num_rows($report) != 0){  
+                              while($row = mysqli_fetch_assoc($report)){              
                                 echo '<option value="'.$row['group_to_be_assessed'].'">'.$row['group_to_be_assessed'].'</option>';
                               }
                             }else{

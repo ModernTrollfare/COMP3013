@@ -94,6 +94,7 @@
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
               <li><a href="AssignAssignmentManagement.php">Assign Group Assignments</a></li>
+              <li><a href="rank.php">Ranking</a></li>
               <li class="nav-header">My Profile</li>
               <li><a href="AdminChangePassword.php">Change Password</a></li>
             </ul>
@@ -115,9 +116,10 @@
                 print($myrow['name']);
                 echo "<br>Please print the details out and give it out to the students.</h3>";
               ?>
+              <a href="RegisterStudent.php" class="btn btn-primary btn-medium" href="RegisterStudent.php">Return to register another student</a>
           </div> <!-- /container -->            
         </div><!--/span-->
-        <button class="span3 btn btn-lg btn-primary btn-block" type="submit" href="RegisterStudent.php">Return to register another student</button>
+        
       </div><!--/row-->
 
       <hr>
