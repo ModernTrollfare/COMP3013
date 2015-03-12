@@ -108,6 +108,7 @@
               <br></br>    
               <button class="span3 btn btn-lg btn-primary btn-block" type="submit">Register</button>
             </form>
+
           </div> <!-- /container -->            
         </div><!--/span-->
 
