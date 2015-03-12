@@ -1,15 +1,16 @@
-    <?php session_start();
-        if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
-            header("Location: ../index.php");
-            $_SESSION['errors'] = array("Please Login before proceeding.");
-        }
-        else if($_SESSION['usertype'] != '1'){
-            header("Refresh:3;url=../index.php");
-            print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
-            exit;
-        }
-    ?>
-    <!DOCTYPE html>
+  
+<?php session_start();
+    if(!((isset($_SESSION['username']))&&(isset($_SESSION['password'])))){
+    header("Location: ../index.php");
+    $_SESSION['errors'] = array("Please Login before proceeding.");
+  }
+  else if($_SESSION['usertype'] != '1'){
+    header("Refresh:3;url=../index.php");
+    print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
+    exit;
+  }
+?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -138,40 +139,39 @@
             <p><label class="" for="fetchid">Get Report of group:</label>
             <select class="span2" name="fetchid" id="fetchid">
             <?php
-              $tmp = mysqli_fetch_assoc($result);
-              $owngrp = $tmp['group_id'];
-
-              $report = mysqli_query($connection,"SELECT group_to_be_assessed FROM ASSIGNATIONS WHERE group_assessing = '$owngrp'");
-              if(mysqli_num_rows($report) != 0) {    
-                 $row1 = mysqli_fetch_assoc($results);   
-                 $groupid = $row1['group_to_be_assessed'];
+            $tmp = mysqli_fetch_assoc($result);
+            $owngrp = $tmp['group_id'];
+            $results = mysqli_query($connection,"SELECT * FROM GROUPS");
+            while($row = mysqli_fetch_assoc($results)) {                          
+                $student1 = $row['student_1'];
+                $student2 = $row['student_2'];
+                $student3 = $row['student_3'];
+                $nos = 3;
+                $rowgid = $row['group_id'];
+              if((string)$student1 == "" ){
+                $studentName1['name'] = "Unassigned";
+                $nos = $nos-1;
               }
-
-              $results = mysqli_query($connection,"SELECT * FROM GROUPS WHERE group_id = '$groupid'");
-              while($row = mysqli_fetch_assoc($results)) {                          
-                  $student1 = $row['student_1'];
-                  $student2 = $row['student_2'];
-                  $student3 = $row['student_3'];
-                  $nos = 3;
-                  $rowgid = $row['group_id'];
-                if((string)$student1 == "" ){
-                  $studentName1['name'] = "Unassigned";
-                  $nos = $nos-1;
-                }
-                if((string)$student2 == "" ){
-                  $studentName2['name'] = "Unassigned";
-                  $nos = $nos-1;
-                }
-                if((string)$student3 == "" ){
-                  $studentName3['name'] = "Unassigned";
-                  $nos = $nos-1;
-                }
-                if($nos != 0 && ($row['group_id']!= $owngrp)){
-                  // $query = "SELECT * FROM REPORTS WHERE group_id = '$rowgid'";
-                  echo '<option value="'.$groupid.'">'.$groupid.'</option>';
+              if((string)$student2 == "" ){
+                $studentName2['name'] = "Unassigned";
+                $nos = $nos-1;
+              }
+              if((string)$student3 == "" ){
+                $studentName3['name'] = "Unassigned";
+                $nos = $nos-1;
+              }
+              if($nos != 0 && ($row['group_id']!= $owngrp)){
+                $query = "SELECT * FROM REPORTS WHERE group_id = '$rowgid'";
+                $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$groupID';");
+                $groupid_checking = $row['group_id'];
+                if(mysqli_num_rows($report) != 0){ 
+                  if (mysqli_fetch_assoc(mysqli_query($connection, "SELECT * FROM ASSIGNATIONS WHERE group_to_be_assessed = '$groupid_checking' AND group_assessing = '$owngrp';"))) {
+                    echo '<option value="'.$groupid_checking.'">'.$groupid_checking.'</option>';
+                  }
                 }
               }
-            ?>
+            }
+          ?>
         </select></form><button type="submit" class="btn">Fetch Report</button></div>
             <?php
               $gid = $owngrp;
@@ -233,3 +233,5 @@
 
   </body>
 </html>
+Status API Training Shop Blog About
+© 2015 GitHub, Inc. Terms Privacy Security Contact
