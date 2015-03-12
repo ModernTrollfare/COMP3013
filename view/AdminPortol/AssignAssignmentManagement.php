@@ -107,7 +107,7 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <form class="navbar-form" action="student_upload_report.php" method="POST">
+          <form class="navbar-form" action="assigningGroupsToAssess.php" method="POST">
             <div class="hero-unit">
               <div class="input-group">
                 <!-- <input type="text" class="form-control" name="report_title" placeholder="Title" aria-describedby="basic-addon3"> -->
@@ -115,9 +115,7 @@
 
               <div class="input-group">
               <p><input type="text" class="form-control span 4" name="group_be_viewed" placeholder="The Group That Is Being Viewed" aria-describedby="basic-addon1"></p>
-              <p><input type="text" class="form-control span 4" name="group1_be_assigned" placeholder="The Group That Is Being Assigned" aria-describedby="basic-addon1"></p>
-              <p><input type="text" class="form-control span 4" name="group2_be_assigned" placeholder="The Group That Is Being Assigned" aria-describedby="basic-addon1"></p>
-              <p><input type="text" class="form-control span 4" name="group3_be_assigned" placeholder="The Group That Is Being Assigned" aria-describedby="basic-addon1"></p>
+              <p><input type="text" class="form-control span 4" name="group_be_assigned" placeholder="The Group That Is Being Assigned" aria-describedby="basic-addon1"></p>
               </div> 
 
               <button type="submit" class="btn">Submit</button>
