@@ -137,31 +137,35 @@
                         $tmp = mysqli_fetch_assoc($results);
                         $owngrp = $tmp['group_id'];
                         $results = mysqli_query($connection,"SELECT * FROM GROUPS");
-                        while($row = mysqli_fetch_assoc($results)) {                          
-                            $student1 = $row['student_1'];
-                            $student2 = $row['student_2'];
-                            $student3 = $row['student_3'];
-                            $nos = 3;
-                          if((string)$student1 == "" ){
-                            $studentName1['name'] = "Unassigned";
-                            $nos = $nos-1;
-                          }
-                          if((string)$student2 == "" ){
-                            $studentName2['name'] = "Unassigned";
-                            $nos = $nos-1;
-                          }
-                          if((string)$student3 == "" ){
-                            $studentName3['name'] = "Unassigned";
-                            $nos = $nos-1;
-                          }
-                          if($nos != 0 && ($row['group_id']!= $owngrp)){
-                            $query = "SELECT * FROM REPORTS WHERE group_id = '$rowgid'";
+                        // while($row = mysqli_fetch_assoc($results)) {                          
+                        //     $student1 = $row['student_1'];
+                        //     $student2 = $row['student_2'];
+                        //     $student3 = $row['student_3'];
+                        //     $nos = 3;
+                        //   if((string)$student1 == "" ){
+                        //     $studentName1['name'] = "Unassigned";
+                        //     $nos = $nos-1;
+                        //   }
+                        //   if((string)$student2 == "" ){
+                        //     $studentName2['name'] = "Unassigned";
+                        //     $nos = $nos-1;
+                        //   }
+                        //   if((string)$student3 == "" ){
+                        //     $studentName3['name'] = "Unassigned";
+                        //     $nos = $nos-1;
+                        //   }
+                        //   if($nos != 0 && ($row['group_id']!= $owngrp)){
+                            $query = "SELECT * FROM ASSIGNATIONS WHERE group_assessing = '$rowgid'";
                             $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
-                            if(mysqli_num_rows($report) != 0){                  
-                              echo '<option value="'.$row['group_id'].'">'.$row['group_id'].'</option>';
+                            if(mysql_num_rows($report) != 0){  
+                              while(mysqli_fetch_assoc($report)){                
+                                echo '<option value="'.$row['group_to_be_assessed'].'">'.$row['group_to_be_assessed'].'</option>';
+                              }
+                            }else{
+                              echo '<option>No Group Assigned</option>';
                             }
-                          }
-                        }
+                        //   }//end if
+                        // }//end while
                         $_SESSION['owngrp'] = $owngrp;
                       ?>
                       </select>
