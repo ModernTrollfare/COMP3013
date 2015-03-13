@@ -101,7 +101,6 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <br></br>
           <h2 class="sub-header">Enrol a student to a group</h2>
           <?php
             if(isset($_SESSION['enrerrors'])){
@@ -116,12 +115,14 @@
               <label for="stuid" class="sr-only" >Student ID to enrol</label>
               <!-- <input type="name" id="stuid" name="stuid" class="form-control" placeholder="Student ID" required="" autofocus="">
                -->
-               <p> <select class="span2" name="stuid" id="stuid">
+               <p> <select class="span2" name="stuid" id="stuid" required>
+                <option value="">No Student Selected</option>
                   <?php
                     $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
                     $student = mysqli_query($connection,"SELECT * FROM STUDENTS");
                     //$results = mysqli_query($connection,"SELECT * FROM Groups");
-                    while($row = mysqli_fetch_assoc($student)) { 
+                    //$row = mysqli_fetch_assoc($student);
+                    while($row=mysqli_fetch_assoc($student)) { 
                         $stdid = $row['student_id'];
                         $results = mysqli_query($connection,"SELECT group_id FROM GROUPS WHERE student_1 = '$stdid' OR student_2 = '$stdid' OR student_3 = '$stdid'");    
                         if(mysqli_fetch_assoc($results)==0){
@@ -133,7 +134,8 @@
               <br></br>    
               <label for="grpid" class="sr-only" >Group ID</label>
               <!-- <input type="name" id="grpid" name="grpid" class="form-control" placeholder="Group ID" required="">  
-               --><p> <select class="span2" name="grpid" id="grpid">
+               --><p> <select class="span2" name="grpid" id="grpid" required>
+                <option value="">No Group Selected</option>
                   <?php
                     $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
                     $group = mysqli_query($connection,"SELECT group_id FROM GROUPS WHERE student_1 IS NULL OR student_2 IS NULL  OR student_3 IS NULL ");
@@ -164,7 +166,22 @@
           <form class="form-signin" action="unrAction.php" method="POST">
               <h4 class="form-signin-heading">Please fill in student details</h2>
               <label for="stuid" class="sr-only" >Student ID</label>
-              <input type="name" id="stuid" name="stuid" class="form-control" placeholder="Student ID" required="" autofocus="">         
+              <p> <select class="span2" name="stuid" id="stuid" required>
+                <option value="">No Student Selected</option>
+                  <?php
+                    $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                    $student = mysqli_query($connection,"SELECT * FROM STUDENTS");
+                    //$results = mysqli_query($connection,"SELECT * FROM Groups");
+                    //$row = mysqli_fetch_assoc($student);
+                    while($row=mysqli_fetch_assoc($student)) { 
+                        $stdid = $row['student_id'];
+                        $results = mysqli_query($connection,"SELECT group_id FROM GROUPS WHERE student_1 = '$stdid' OR student_2 = '$stdid' OR student_3 = '$stdid'");    
+                        if(mysqli_fetch_assoc($results)!=0){
+                          echo '<option value="'.$stdid.'">'.$stdid.'</option>';
+                        }                     
+                    }//end while
+                  ?>
+              </select></p>           
               <br></br>    
               <button class="btn" type="submit">Unenrol</button>
           </form>
