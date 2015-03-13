@@ -148,7 +148,8 @@
                         $group=mysqli_fetch_row($groups);
                         echo "<td>".$group[0]."</td></tr>";
                       }else {
-                        echo "<td>unassigned</td></tr>";
+                        //echo "<td>unassigned</td></tr>";
+                        echo '<td><a class="btn" href="StudentEnrollment.php">Assign A Group</a></td></tr>';
                       }
                     }
                     mysqli_close($connection);
