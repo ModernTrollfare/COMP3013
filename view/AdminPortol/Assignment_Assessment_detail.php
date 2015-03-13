@@ -130,9 +130,13 @@
             $query = "SELECT last_modified ,xml_file FROM REPORTS WHERE group_id = '$gid'";
             $result = mysqli_query($connection, $query)
               or die('Error Query'.mysqli_error($connection));
-            $temp = mysqli_fetch_assoc($result);
-              echo '<p>Last Upload Date: '.$temp['last_modified']."</p>";
+            $temp = mysqli_fetch_assoc($result);           
+            if($temp!=0){  
+              echo '<p>Last Upload Date: '.$temp['last_modified']."</p>";            
               echo '<a href="../'.$temp['xml_file'].'" class="btn"> View Assignment File</a>';
+            }else{
+              echo '<p>Last Upload Date: No File Uploaded</p>';  
+            }
           ?>
           </div>
           <h2 class="sub-header">Assessment</h2>

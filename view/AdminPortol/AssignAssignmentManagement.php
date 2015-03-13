@@ -115,8 +115,80 @@
               </div>
               <h3>Peer Assessment Assignment</h3>
               <div class="input-group">
-              <p><input type="text" class="form-control span 4" name="group_be_viewed" placeholder="The Group That Is Being Assessed" aria-describedby="basic-addon1"></p>
-              <p><input type="text" class="form-control span 4" name="group_be_assigned" placeholder="Assessing Group" aria-describedby="basic-addon1"></p>
+<!--               <p><input type="text" class="form-control span 4" name="group_be_viewed" placeholder="The Group That Is Being Viewed" aria-describedby="basic-addon1"></p>
+ -->             <p> <select class="span2" name="group_be_viewed" id="group_be_viewed">
+                      <?php
+                        $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                    
+                        $results = mysqli_query($connection,"SELECT * FROM GROUPS");
+                        while($row = mysqli_fetch_assoc($results)) {                          
+                            $student1 = $row['student_1'];
+                            $student2 = $row['student_2'];
+                            $student3 = $row['student_3'];
+                            $currentgrp = $row['group_id'];
+                            $nos = 3;
+                          if((string)$student1 == "" ){
+                            $studentName1['name'] = "Unassigned";
+                            $nos = $nos-1;
+                          }
+                          if((string)$student2 == "" ){
+                            $studentName2['name'] = "Unassigned";
+                            $nos = $nos-1;
+                          }
+                          if((string)$student3 == "" ){
+                            $studentName3['name'] = "Unassigned";
+                            $nos = $nos-1;
+                          }
+                          if($nos == 3){
+                            //$query = "SELECT group_to_be_assessed FROM ASSIGNATIONS WHERE group_assessing = '$owngrp'";
+                            $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$currentgrp'");
+                            //$report = mysqli_query($connection,$query);
+                            if(mysqli_num_rows($report) != 0){  
+                                echo '<option value="'.$row['group_id'].'">'.$row['group_id'].'</option>';
+                            }else{
+                              echo '<option>No Group Avaliable</option>';
+                            }
+                          }//end if
+                        }//end while
+                      ?>
+              </select></p>
+             <!--  <p><input type="text" class="form-control span 4" name="group_be_assigned" placeholder="The Group That Is Being Assigned" aria-describedby="basic-addon1"></p>
+               --><p><select class="span2" name="group_be_assigned" id="group_be_assigned">
+                      <?php
+                        $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                    
+                        $results = mysqli_query($connection,"SELECT * FROM GROUPS");
+                        while($row = mysqli_fetch_assoc($results)) {                          
+                            $student1 = $row['student_1'];
+                            $student2 = $row['student_2'];
+                            $student3 = $row['student_3'];
+                            $currentgrp = $row['group_id'];
+                            $nos = 3;
+                          if((string)$student1 == "" ){
+                            $studentName1['name'] = "Unassigned";
+                            $nos = $nos-1;
+                          }
+                          if((string)$student2 == "" ){
+                            $studentName2['name'] = "Unassigned";
+                            $nos = $nos-1;
+                          }
+                          if((string)$student3 == "" ){
+                            $studentName3['name'] = "Unassigned";
+                            $nos = $nos-1;
+                          }
+                          if($nos == 3){
+                            //$query = "SELECT group_to_be_assessed FROM ASSIGNATIONS WHERE group_assessing = '$owngrp'";
+                            $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$currentgrp'");
+                            //$report = mysqli_query($connection,$query);
+                            if(mysqli_num_rows($report) != 0){  
+                                echo '<option value="'.$row['group_id'].'">'.$row['group_id'].'</option>';
+                            }else{
+                              echo '<option>No Group Avaliable</option>';
+                            }
+                          }//end if
+                        }//end while
+                      ?>
+              </select></p>
               </div> 
 
               <button type="submit" class="btn">Submit</button>
