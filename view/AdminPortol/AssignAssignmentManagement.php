@@ -116,7 +116,8 @@
               <h3>Peer Assessment Assignment</h3>
               <div class="input-group">
 <!--               <p><input type="text" class="form-control span 4" name="group_be_viewed" placeholder="The Group That Is Being Viewed" aria-describedby="basic-addon1"></p>
- -->             <p> <select class="span2" name="group_be_viewed" id="group_be_viewed">
+ -->             <p> <label for="group_be_viewed" class="sr-only" >Group Assessed</label>
+                    <select class="span2" name="group_be_viewed" id="group_be_viewed">
                       <?php
                         $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
                     
@@ -151,9 +152,10 @@
                           }//end if
                         }//end while
                       ?>
-              </select></p>
-             <!--  <p><input type="text" class="form-control span 4" name="group_be_assigned" placeholder="The Group That Is Being Assigned" aria-describedby="basic-addon1"></p>
-               --><p><select class="span2" name="group_be_assigned" id="group_be_assigned">
+                      </select></p>
+                      <p><label for="group_be_assigned" class="sr-only" >Group Assessing</label>
+                      <select class="span2" name="group_be_assigned" id="group_be_assigned">
+
                       <?php
                         $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
                     
@@ -194,6 +196,46 @@
               <button type="submit" class="btn">Submit</button>
             </div><!--/.fluid-container-->
           </form>
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Group Assessing</th>
+                  <th>Group Assessed</th>
+                  <!-- <th>Assessment</th>   -->              
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                    $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
+                                     
+                    $results = mysqli_query($connection,"SELECT * FROM ASSIGNATIONS ORDER BY group_assessing ASC");
+                    while($row = mysqli_fetch_assoc($results)) {
+                      echo "<tr><td>" . $row['group_assessing'] . "</td><td>" . $row['group_to_be_assessed'] . "</td></tr>";
+                      // $groupID = $row['group_assessing'];
+                      // $groupID2 = $row['group_to_be_assessed'];
+                      // //print($studentID);
+                      // $query="SELECT report_id FROM REPORTS WHERE group_id = '$groupID2' ";
+                      // $group2 = mysqli_query($connection,$query);
+                      // if(mysqli_num_rows($group2)==1){
+                      //     $reportID=mysqli_fetch_row($group2);
+                      //   }
+                      // $assessments = mysqli_query($connection,"SELECT assessment_id FROM ASSESSMENTS WHERE group_id = '$groupID' AND report_id='$reportID' ");
+                      // if(mysqli_num_rows($assessments)==1){                
+                      //   $assessment=mysqli_fetch_row($assessments);
+                                               
+                      //   echo "<td>".$group[0]."</td></tr>";
+                      // }else {
+                      //   //echo "<td>unassigned</td></tr>";
+                      //   echo '<td><a class="btn" href="StudentEnrollment.php">Assign A Group</a></td></tr>';
+                      // }
+                    }
+                    mysqli_close($connection);
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div><!--/span-->
       </div><!--/row-->
 
