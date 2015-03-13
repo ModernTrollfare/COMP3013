@@ -1,13 +1,13 @@
 <?php
 	session_start();
 	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
-	$agrp = $_POST['assessedgrp'];
+	$agrp = mysqli_real_escape_string($connection,$_POST['assessedgrp']);
 	$query = "SELECT report_id FROM REPORTS WHERE group_id = '$agrp'";
 	$result = mysqli_query($connection,$query);
 	$temp = mysqli_fetch_assoc($result);
 	$rid = $temp['report_id'];
-	$grade = $_POST['marks'];
-	$cm = $_POST['comments'];
+	$grade = mysqli_real_escape_string($connection,$_POST['marks']);
+	$cm = mysqli_real_escape_string($connection,$_POST['comments']);
 	$owngrp = $_SESSION['owngrp'];
 	// var_dump($_POST);
 	// var_dump($owngrp);

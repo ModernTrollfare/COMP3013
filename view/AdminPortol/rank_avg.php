@@ -3,7 +3,7 @@
             header("Location: ../index.php");
             $_SESSION['errors'] = array("Please Login before proceeding.");
         }
-        else if($_SESSION['usertype'] != '1'){
+        else if($_SESSION['usertype'] != '0'){
             header("Refresh:3;url=../index.php");
             print("Well - You do not have the permission to access this page. You will be redirected to your home page in 3 seconds.");
             exit;
@@ -97,23 +97,20 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li><a href="student_main.php">Main Page</a></li>
-              <li class="nav-header">Assignments</li>
-              <li><a href="upload_assignment.php">Uploading</a></li>
-              <!-- <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li> -->
-              <li class="nav-header">Assessments</li>
-              <li><a href="view_allocated_assignments.php">Assessing other groups</a></li>
-              <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
-              <li class = "active"><a href="rank.php">Ranking</a></li>
-              <!-- <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li> -->
-              <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.php">Changing Group Details</a></li>
-              <li class="active"><a href="change_password.php">Changing Personal Password</a></li>
-              <!-- <li><a href="#">Link</a></li> -->
+              <a href="workspaceForAdmin.php">Main Page</a>
+              <li class="nav-header">Student</li>
+              <li ><a href="StudentManagement.php">View Students</a></li>
+              <li><a href="RegisterStudent.php">Register New Student</a></li>
+              <li class="nav-header">Group</li>
+              <li><a href="GroupManagement.php">View Groups</a></li>
+              <li><a href="addGroups.php">Add/Remove groups</a></li>
+              <li><a href="StudentEnrollment.php">Assign Student to groups</a></li>
+              <li class="nav-header">Assignment & Assessment</li>
+              <li><a href="AssignmentManagement.php">View Assignments</a></li>
+              <li><a href="AssignAssignmentManagement.php">Assign Group Assignments</a></li>
+              <li class="active"><a href="rank.php">Ranking</a></li>
+              <li class="nav-header">My Profile</li>
+              <li><a href="AdminChangePassword.php">Change Password</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

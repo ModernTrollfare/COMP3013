@@ -111,7 +111,7 @@
                 echo "<h3>Student Login ID:";
                 print($myrow['student_id']);
                 echo "<br>Student Password:";
-                print($myrow['pwd']);
+                print($_SESSION['realpw']);
                 echo "<br>Student Name:";
                 print($myrow['name']);
                 echo "<br>Please print the details out and give it out to the students.</h3>";
