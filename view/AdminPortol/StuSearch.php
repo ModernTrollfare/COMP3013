@@ -103,28 +103,44 @@
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>View student deatils</h1>
+            <h1>Student Search Results</h1>
+            <?php
+              switch ($_POST['querytype']) {
+                  case 0:
+                      $i = "Student ID";
+                      break;
+                  case 1:
+                      $i = "Group ID";
+                      break;
+                  case 2:
+                      $i = "Student Name";
+                      break;
+              }
+              echo '<p> Your Query: <b>'.$_POST['query'].'</b> search by <b>'.$i.'</b></p>';
+            ?>
             <p></p>            
-            <p><a href="RegisterStudent.php" class="btn btn-primary btn-large">Register a New Student Now »</a></p>
+            <p>Results:</p>
           </div>
-
-            <div >
-              <form action="StuSearch.php"  method="POST" class="form-inline" role="form">
-                <div class="form-group">
-                  <label class="control-label col-sm-2" for="querytype">Search for a Student</label>
-                  <div class="col-sm-10">
-                  <select class="span5" id="querytype" name="querytype">
-                    <option value="0">Student ID</option>
-                    <option value="1">Group ID</option>
-                    <option value="2">Student Name</option>                  
-                  </select>
-                  <input class="input-medium search-query" type="text" placeholder="" name="query" required="" autofocus="">
-                  <button type="submit" class="btn">Search</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-
+          <?php
+             switch ($_POST['querytype']) {
+                  case 0:
+                      $i = "student_id";
+                      break;
+                  case 1:
+                      $i = "group_id";
+                      break;
+                  case 2:
+                      $i = "name";
+                      break;
+              }
+              $q = $_POST['query'];
+            $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
+            $results = mysqli_query($connection,"SELECT * FROM STUDENTS WHERE $i LIKE '%$q%'");
+            if(mysqli_num_rows($results)== 0){
+              echo '<p><b><i>SORRY, THERE ARE NO ENTRIES MATCHING YOUR QUERY.</b></i></p>';
+              exit;
+            }
+            else echo'
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -134,11 +150,7 @@
                   <th>Group ID</th>
                 </tr>
               </thead>
-              <tbody>
-                <?php
-                    $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
-                                     
-                    $results = mysqli_query($connection,"SELECT * FROM STUDENTS");
+              <tbody>';
                     while($row = mysqli_fetch_assoc($results)) {
                       echo "<tr><td>" . $row['student_id'] . "</td><td>" . $row['name'] . "</td>";
                       $studentID = $row['student_id'];
@@ -152,10 +164,11 @@
                       }
                     }
                     mysqli_close($connection);
-                ?>
+               echo' 
               </tbody>
             </table>
-          </div>
+          </div>';
+          ?>
         </div><!--/span-->
       </div><!--/row-->
 
