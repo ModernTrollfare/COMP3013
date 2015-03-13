@@ -9,9 +9,6 @@
 	$grade = mysqli_real_escape_string($connection,$_POST['marks']);
 	$cm = mysqli_real_escape_string($connection,$_POST['comments']);
 	$owngrp = $_SESSION['owngrp'];
-	// var_dump($_POST);
-	// var_dump($owngrp);
-	//exit;
 	$query = "SELECT assessment_id FROM ASSESSMENTS WHERE report_id = '$rid' AND group_id = '$owngrp'";
 	$result = mysqli_query($connection,$query);
 	if (mysqli_num_rows($result) != 0){
@@ -23,7 +20,7 @@
 		$query = "SELECT MAX(assessment_id) AS max FROM ASSESSMENTS";
 		$result = mysqli_fetch_assoc(mysqli_query($connection,$query));
 		$nid = $result['max']+1;
-		$query = "INSERT INTO ASSESSMENTS (assessment_id,report_id,group_id,grade,comments) VALUES ('$nid','$rid','$owngrp','$grade','$cm');";
+		$query = "INSERT INTO ASSESSMENTS (assessment_id,grade,comments) VALUES ('$nid','$grade','$cm');";
 	}
 	$result = mysqli_query($connection,$query) or die("ERROR inserting".$query.mysqli_error($connection));
 	mysqli_close($connection);
