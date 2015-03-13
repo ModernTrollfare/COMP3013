@@ -3,11 +3,12 @@
 	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
 	$usertype = $_POST["UserType"];
 	$user = array();
-	$user["userid"] = $_POST["UserID"];
-	$user["Password"] = $_POST["Password"];
-	$user["usertype"] = $usertype;
+	$user["userid"] = mysqli_real_escape_string($connection,$_POST["UserID"]);
+	$user["Password"] = mysqli_real_escape_string($connection,$_POST["Password"]);
+	$user["Password"] = sha1(md5($user["Password"]));
+	$user["usertype"] = mysqli_real_escape_string($connection,$usertype);
 	$uid = $user["userid"];
-	$upwd = $user["Password"];
+	$upwd = sha1(md5($user["Password"]));
 	if($usertype == "-1"){
 		$_SESSION['errors'] = array("Please Select your User Type.");
 		//window.history.back();

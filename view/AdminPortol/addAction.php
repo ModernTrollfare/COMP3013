@@ -24,7 +24,10 @@
     }
     $query = "SELECT MAX(group_id) FROM GROUPS";
     $results = mysqli_query($connection,$query);
-    $newid = mysqli_fetch_assoc($results)['MAX(group_id)']+ 1;
+    if(!is_null($mysqli_fetch_assoc($results)['MAX(group_id)']))
+      $newid = mysqli_fetch_assoc($results)['MAX(group_id)']+ 1;
+    else
+      $newid = 0;
   for($i = 0; $i < $_POST['groupnums']; $i += 1){
     $n = $newid + $i;
     $query = "INSERT INTO GROUPS (group_id) VALUES ('$n');";

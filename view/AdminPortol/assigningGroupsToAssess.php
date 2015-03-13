@@ -1,8 +1,8 @@
 <?php
 	session_start();
 	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
-	$group_be_viewed = $_POST['group_be_viewed'];
-	$group_be_assigned = $_POST['group_be_assigned'];
+	$group_be_viewed = mysqli_real_escape_string($connection,$_POST['group_be_viewed']);
+	$group_be_assigned =mysqli_real_escape_string($connection, $_POST['group_be_assigned']);
 
 
 	// Checking the input values are not null
@@ -23,9 +23,14 @@
   $results = mysqli_query($connection,$query);
   $maxid = mysqli_fetch_assoc($results)['MAX(group_id)'];
 
+  if(is_null($maxid)){
+		echo "<script type='text/javascript'>alert('There are no groups. Please add groups before proceeding. Going back in 3 Sec');</script>";
+		header('Refresh: 3; url=AssignAssignmentManagement.php');
+		exit;
+  }
   // Checking the input values are not unvalid
   if (($group_be_assigned > $maxid) || ($group_be_viewed > $maxid)) {
-		echo "<script type='text/javascript'>alert('The Group is not Existed. Going back in 3 Sec');</script>";
+		echo "<script type='text/javascript'>alert('The Group does not exist. Going back in 3 Sec');</script>";
 		header('Refresh: 3; url=AssignAssignmentManagement.php');
 		exit;
 	};
@@ -35,7 +40,7 @@
 
 	// Checking that does the pair is alraeady existed
 	if (mysqli_fetch_assoc($results) == TRUE) {
-		echo "<script type='text/javascript'>alert('The Relation is already Existed. Going back in 3 Sec');</script>";
+		echo "<script type='text/javascript'>alert('The Relation already exists. Going back in 3 Sec');</script>";
 		header('Refresh: 3; url=AssignAssignmentManagement.php');
 		exit;
 	}

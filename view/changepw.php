@@ -15,6 +15,17 @@
 		}
 		exit;
 	 }
+ 	if($oldpw == $new1){
+		$_SESSION['errors'] = array("Your old password and new password must be different.");
+		if($_SESSION['usertype'] == '0'){
+			header('Location: AdminPortol/AdminChangePassword.php');
+		}
+		else{
+			header('Location: StudentPortol/change_password.php');
+		}
+		exit;
+	}
+	$oldpw = sha1(md5($oldpw));
 	if($_SESSION['usertype'] == "0")
 		$query = "SELECT admin_id FROM ADMINS WHERE admin_id ='$uid' AND pwd = '$oldpw'";
 		//$query = "SELECT userid, username FROM tuser WHERE username = '$user_username' AND password = SHA('$user_password')";
@@ -31,16 +42,7 @@
 		}
 		exit;
 	}
-	if($oldpw == $new1){
-		$_SESSION['errors'] = array("Your old password and new password must be different.");
-		if($_SESSION['usertype'] == '0'){
-			header('Location: AdminPortol/AdminChangePassword.php');
-		}
-		else{
-			header('Location: StudentPortol/change_password.php');
-		}
-		exit;
-	}
+
 	$temp = mysqli_fetch_assoc($result);
 	if($_SESSION['usertype'] == "0")
 		$tempuid = $temp["admin_id"];
@@ -50,6 +52,7 @@
  //    var_dump($_SESSION['errors']);
  //    echo '</pre>';
 	// var_dump($tempuid);
+	$new1 = sha1(md5($new1));
 	if($_SESSION['usertype'] == "0")
 		$sql = "UPDATE ADMINS SET pwd ='$new1' WHERE admin_id = '$tempuid'";
 	else
