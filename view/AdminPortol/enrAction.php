@@ -26,6 +26,8 @@
 		exit;		
 	}
 	//enroll student;
+	$query = "SELECT * FROM GROUPS WHERE group_id = '$grpid'";
+	$results = mysqli_query($connection,$query);
 	$myrow = mysqli_fetch_assoc($results);
 	if(is_null($myrow['student_1'])){
 		$query = "UPDATE GROUPS SET student_1 ='$stuid' WHERE group_id = '$grpid'";

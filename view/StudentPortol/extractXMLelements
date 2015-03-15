@@ -1,0 +1,36 @@
+<?php
+	session_start();
+	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+	
+	$xml = simplexml_load_file();
+
+	$title = $xml->title;
+	$content = $xml->content;
+
+	$userid = $_SESSION['userid'];
+  $date = date('Y-m-d H:i:s');
+
+	$query = "SELECT group_id FROM groups WHERE student_1 = '$userid' OR student_2 = '$userid' OR student_3 = '$userid'";
+	$result = mysqli_query($connection, $query) or die('Error' . mysqli_error($connection));
+	$myrow = mysqli_fetch_assoc($result);
+	$gid = $myrow['group_id'];
+
+
+
+	if (true) {
+		$query = "UPDATE REPORTS SET xml_file = '$target_file' , last_modified = '$date' , xml_title = '$title' , xml_content = '$content', text = NULL WHERE group_id = '$gid'";
+	} else {
+		$maxid = mysqli_fetch_assoc($results)['MAX(group_id)'];
+		$maxid = $maxid + 1;
+		$query = "INSERT INTO REPORTS (report_id, group_id, xml_file, last_modified, xml_title, xml_content) VALUES ('$maxid', '$gid', '$target_file', '$date', '$title', '$content');";
+	}
+
+	$result = mysqli_query($connection, $query) or die('Error' . mysqli_error($connection));
+
+	if ($results != FALSE) {
+		// Upload Successfull
+	} else {
+		// Upload Unsuccessfull
+	}
+
+?>

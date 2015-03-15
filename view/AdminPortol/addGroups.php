@@ -133,7 +133,22 @@
           ?>
           <form class="form-signin" action="remAction.php" method="POST">
               <label for="input" class="sr-only" >Group to be removed</label>
-              <input type="name" id="input" name="input" class="form-control" placeholder="Group ID" required="" autofocus="">         
+              <!-- <input type="name" id="input" name="input" class="form-control" placeholder="Group ID" required="" autofocus="">   
+              
+ -->
+              <p> <select class="span2" name="input" id="input" required>
+                <option value="">No Group Selected</option>
+                  <?php
+                    $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                    $group = mysqli_query($connection,"SELECT * FROM GROUPS");
+                    //$results = mysqli_query($connection,"SELECT * FROM Groups");
+                    //$row = mysqli_fetch_assoc($student);
+                    while($row=mysqli_fetch_assoc($group)) { 
+                        $grpid = $row['group_id'];
+                        echo '<option value="'.$grpid.'">'.$grpid.'</option>';
+                    }//end while
+                  ?>
+              </select></p>   
               <br></br>    
               <button class="btn" type="submit">Remove</button>
             </form>

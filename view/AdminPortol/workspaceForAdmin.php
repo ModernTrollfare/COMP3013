@@ -22,12 +22,12 @@
     <link href="../../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
-      }
         padding-top: 60px;
         padding-bottom: 40px;
       }
       .sidebar-nav {
         padding: 9px 0;
+      }
 
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
@@ -83,7 +83,7 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <a href="workspaceForAdmin.php">Main Page</a>
+              <li class="active"><a href="workspaceForAdmin.php">Main Page</a></li>
               <li class="nav-header">Student</li>
               <li ><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>

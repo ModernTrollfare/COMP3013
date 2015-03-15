@@ -40,7 +40,7 @@
     </style>
     <link href="../../lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <!-- Custom styles for login template -->
-    <link href="../../lib/bootstrap/css/signin.css" rel="stylesheet">
+    <!-- <link href="../../lib/bootstrap/css/signin.css" rel="stylesheet"> -->
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
@@ -148,7 +148,8 @@
                         $group=mysqli_fetch_row($groups);
                         echo "<td>".$group[0]."</td></tr>";
                       }else {
-                        echo "<td>unassigned</td></tr>";
+                        //echo "<td>unassigned</td></tr>";
+                        echo '<td><a class="btn" href="StudentEnrollment.php">Assign A Group</a></td></tr>';
                       }
                     }
                     mysqli_close($connection);
