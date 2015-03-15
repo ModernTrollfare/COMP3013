@@ -24,7 +24,7 @@
     }
     $query = "SELECT MAX(group_id) FROM GROUPS";
     $results = mysqli_query($connection,$query);
-    if(!is_null($mysqli_fetch_assoc($results)['MAX(group_id)']))
+    if(!is_null(mysqli_fetch_assoc($results)['MAX(group_id)']))
       $newid = mysqli_fetch_assoc($results)['MAX(group_id)']+ 1;
     else
       $newid = 0;
