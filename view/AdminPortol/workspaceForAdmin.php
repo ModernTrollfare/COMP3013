@@ -102,8 +102,8 @@
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Hello, world!</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <h1>Hi! Welcome back,<?php print($_SESSION['username'])?></h1>
+            <p>This is the homepage of administrators. Start managing the platform here!</p>
             <p><a href="http://getbootstrap.com/2.3.2/examples/fluid.php#" class="btn btn-primary btn-large">Learn more »</a></p>
           </div>
           <div class="row-fluid">
@@ -136,7 +136,7 @@
       <hr>
 
       <footer>
-        <p>© Company 2013</p>
+        <p>Peer Assessment System</p>
       </footer>
 
     </div><!--/.fluid-container-->

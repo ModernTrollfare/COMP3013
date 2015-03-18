@@ -191,7 +191,7 @@
       <hr>
 
       <footer>
-        <p>© Company 2013</p>
+        <p>Peer Assessment System</p>
       </footer>
 
     </div><!--/.fluid-container-->
