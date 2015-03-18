@@ -23,7 +23,7 @@
             }
     ?>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Peer Assessment System - index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -115,9 +115,9 @@
             </p>
         <h1>Virtual Learning Environment</h1>
         <h2>Peer Assessment</h2>
-        <p>Hi. This is the Home Page.</p>
-        <h3 style="color:red">AND NOTHING ELSE IS WORKING</h3>
-        <img src="../resources/pic/HANDYMAN-IMAGE.jpg" alt="Maintaining"> 
+        <p>Hi. Welcome to the Peer Assessment System.</p>
+        <h3>Please Login at the top right hand corner.</h3>
+        <img src="../resources/pic/homework.jpg" alt="Doing Homework..."> 
         <!-- s -->
       </div>
 
@@ -143,7 +143,7 @@
       <hr>
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>Peer Asssessment System</p>
       </footer>
 
     </div> <!-- /container -->

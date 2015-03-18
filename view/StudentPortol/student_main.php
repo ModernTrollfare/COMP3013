@@ -112,16 +112,18 @@
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.php">Changing Group Details</a></li>
+              <!-- <li><a href="change_group_details.php">Changing Group Details</a></li> -->
               <li><a href="change_password.php">Changing Personal Password</a></li>
+              <li class="nav-header">Group Forum</li>
+              <li><a href="forum_index.php">Group Forum index page</a></li>
               <!-- <li><a href="#">Link</a></li> -->
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h3>Hi. Welcome Back</h3>
-            <p>This is the Main Page for all Studetns to Upload or View</p>
+            <h3>Hi. Welcome Back, <?php print($_SESSION['username']);?>.</h3>
+            <p>This is the Main Page for all Students.</p>
             <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
           </div>
           <div class="row-fluid">
@@ -143,11 +145,6 @@
           </div><!--/row-->
           <div class="row-fluid">
             <div class="span4">
-              <h2>Changing Your Group Details</h2>
-              <p>This option will let you to change the group name and group description</p>
-              <p><a class="btn" href="change_group_details.php">Change Group's Details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
               <h2>Changing Your Password</h2>
               <p>This option will let you to change your password</p>
               <p><a class="btn" href="change_password.php">Change Password &raquo;</a></p>
@@ -157,6 +154,13 @@
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
               <p><a class="btn" href="#">View details &raquo;</a></p>
             </div> --><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Group Forum</h2>
+              <p>This option allows you to go to a forum of your own group.</p>
+              <p><a class="btn" href="forum_index.php">Upload Assignment &raquo;</a></p>
+            </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->

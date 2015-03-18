@@ -111,8 +111,10 @@
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.php">Changing Group Details</a></li>
+              <!-- <li><a href="change_group_details.php">Changing Group Details</a></li> -->
               <li class="active"><a href="change_password.php">Changing Personal Password</a></li>
+              <li class="nav-header">Group Forum</li>
+              <li><a href="forum_index.php">Group Forum index page</a></li>
               <!-- <li><a href="#">Link</a></li> -->
             </ul>
           </div><!--/.well -->

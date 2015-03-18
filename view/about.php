@@ -17,7 +17,7 @@
             }
     ?>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Peer Assessment System - About Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -150,7 +150,7 @@
       <hr>
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>Peer Assessment System</p>
       </footer>
 
     </div> <!-- /container -->

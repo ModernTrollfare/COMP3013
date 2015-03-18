@@ -98,24 +98,25 @@
             <ul class="nav nav-list">
               <li><a href="student_main.php">Main Page</a></li>
               <li class="nav-header">Assignments</li>
-              <li><a href="upload_assignment.php">Uploading Assignments</a></li>
+              <li class="active"><a href="upload_assignment.php">Uploading Assignments</a></li>
               <li><a href="student_rank.php">Ranking</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
-              <li class="active"><a href="view_allocated_assignments.php">Assessing other groups</a></li>
+              <li><a href="view_allocated_assignments.php">Assessing other groups</a></li>
               <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.php">Changing Group Details</a></li>
+              <!-- <li><a href="change_group_details.php">Changing Group Details</a></li> -->
               <li><a href="change_password.php">Changing Personal Password</a></li>
+              <li class="nav-header">Group Forum</li>
+              <li><a href="forum_index.php">Group Forum index page</a></li>
               <!-- <li><a href="#">Link</a></li> -->
             </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+          </div><!--/.well -->        </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
             <h3>Upload Assessment</h3>

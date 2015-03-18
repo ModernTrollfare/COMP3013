@@ -14,7 +14,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Change Password</title>
+    <title>Ranking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -100,7 +100,7 @@
               <li><a href="student_main.php">Main Page</a></li>
               <li class="nav-header">Assignments</li>
               <li><a href="upload_assignment.php">Uploading Assignments</a></li>
-              <li class = "active"><a href="student_rank.php">Ranking</a></li>              
+              <li class="active"><a href="student_rank.php">Ranking</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
@@ -111,8 +111,10 @@
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.php">Changing Group Details</a></li>
+              <!-- <li><a href="change_group_details.php">Changing Group Details</a></li> -->
               <li><a href="change_password.php">Changing Personal Password</a></li>
+              <li class="nav-header">Group Forum</li>
+              <li><a href="forum_index.php">Group Forum index page</a></li>
               <!-- <li><a href="#">Link</a></li> -->
             </ul>
           </div><!--/.well -->

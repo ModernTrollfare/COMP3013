@@ -95,9 +95,9 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <a href="student_main.php">Main Page</a>
+              <li><a href="student_main.php">Main Page</a></li>
               <li class="nav-header">Assignments</li>
-              <li class="active"><a href="upload_assignment.php">Uploading</a></li>              
+              <li class="active"><a href="upload_assignment.php">Uploading Assignments</a></li>
               <li><a href="student_rank.php">Ranking</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
@@ -109,8 +109,10 @@
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Personal and Group Details</li>
-              <li><a href="change_group_details.php">Changing Group Details</a></li>
+              <!-- <li><a href="change_group_details.php">Changing Group Details</a></li> -->
               <li><a href="change_password.php">Changing Personal Password</a></li>
+              <li class="nav-header">Group Forum</li>
+              <li><a href="forum_index.php">Group Forum index page</a></li>
               <!-- <li><a href="#">Link</a></li> -->
             </ul>
           </div><!--/.well -->
@@ -127,6 +129,11 @@
               </div> 
 
               <button type="submit" class="btn">Submit</button>
+              
+      <footer>
+        <p>&copy; Peer Assessment System</p>
+      </footer>
+
             </div><!--/.fluid-container-->
           </form>
         </div>

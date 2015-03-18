@@ -83,7 +83,7 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <a href="workspaceForAdmin.php">Main Page</a>
+              <li class="active"><a href="workspaceForAdmin.php">Main Page</a>
               <li class="nav-header">Student</li>
               <li ><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>
@@ -93,7 +93,7 @@
               <li><a href="StudentEnrollment.php">Assign Student to groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
-              <li><a href="AssignAssignmentManagement.php">Assign Group Assignments</a></li>
+              <li><a href="AssignAssignmentManagement.php">Assign Group Assessments</a></li>
               <li><a href="rank.php">Ranking</a></li>
               <li class="nav-header">My Profile</li>
               <li><a href="AdminChangePassword.php">Change Password</a></li>

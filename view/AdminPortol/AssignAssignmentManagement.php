@@ -100,7 +100,7 @@
               <li><a href="StudentEnrollment.php">Assign Student to groups</a></li>
               <li class="nav-header">Assignment & Assessment</li>
               <li><a href="AssignmentManagement.php">View Assignments</a></li>
-              <li class = "active"><a href="AssignAssignmentManagement.php">Assign Group Assignments</a></li>
+              <li class = "active"><a href="AssignAssignmentManagement.php">Assign Group Assessments</a></li>
               <li><a href="rank.php">Ranking</a></li>
               <li class="nav-header">My Profile</li>
               <li><a href="AdminChangePassword.php">Change Password</a></li>
