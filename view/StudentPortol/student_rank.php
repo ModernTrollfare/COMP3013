@@ -156,7 +156,7 @@
                             $query ="SELECT SUM(ASSessments.grade) AS gradesum,
                               AVG(assessments.grade) AS gradeavg,
                               reports.group_id AS rgroup,
-                              assessments.group_id AS agroup,
+                              assessments.group_id AS agroup
                       FROM ASSESSMENTS,REPORTS 
                       WHERE assessments.report_id = reports.report_id 
                       GROUP BY assessments.report_id 
@@ -165,7 +165,7 @@
                 or die('Error Query'.mysqli_error($connection));
                 $i = 1;
               while ($row = mysqli_fetch_assoc($result)) {
-                if(($row['rgroup'] == $gid)||($row['agroup'] == $gid){
+                if(($row['rgroup'] == $gid)||($row['agroup'] == $gid)){
                 if($row['rgroup'] == $gid){
                   echo '<tr style="background-color:#5555AA"><td>'.$i.'</td>';
                 }
@@ -173,7 +173,7 @@
                   echo '<tr><td>'.$i.'</td>';
                 }
                 echo'
-                            <td>'.$row["group_id"].'</td>
+                            <td>'.$row["rgroup"].'</td>
                             <td>'.$row["gradesum"].'</td>
                             <td>'.$row["gradeavg"].'</td>
                           </tr>';
