@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
 	$agrp = mysqli_real_escape_string($connection,$_POST['assessedgrp']);
 	$query = "SELECT report_id FROM REPORTS WHERE group_id = '$agrp'";
 	$result = mysqli_query($connection,$query);

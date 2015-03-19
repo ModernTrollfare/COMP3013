@@ -139,7 +139,7 @@
               <p> <select class="span2" name="input" id="input" required>
                 <option value="">No Group Selected</option>
                   <?php
-                    $connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+                    $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
                     $group = mysqli_query($connection,"SELECT * FROM GROUPS");
                     //$results = mysqli_query($connection,"SELECT * FROM Groups");
                     //$row = mysqli_fetch_assoc($student);

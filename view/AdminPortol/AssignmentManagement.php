@@ -120,7 +120,7 @@
               </thead>
               <tbody>
                 <?php
-                $connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
                 $query = "SELECT report_id, AVG(grade) AS avggrade FROM ASSESSMENTS GROUP BY report_id";
                 $results = mysqli_query($connection,$query);
                 while($myrow = mysqli_fetch_assoc($results)) {

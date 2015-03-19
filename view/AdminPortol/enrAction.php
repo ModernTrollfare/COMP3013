@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
 	$grpid = mysqli_real_escape_string($connection,$_POST['grpid']);
 	$results = mysqli_query($connection,"SELECT * FROM GROUPS WHERE group_id = '$grpid'");
 	if(mysqli_num_rows($results)== 0){
