@@ -153,7 +153,7 @@
                 or die('Error Query'.mysqli_error($connection));
               $tmp = mysqli_fetch_assoc($result);
               $gid = $tmp['group_id'];
-              $query ="SELECT SUM(ASSessments.grade) AS gradesum,
+                            $query ="SELECT SUM(ASSessments.grade) AS gradesum,
                               AVG(assessments.grade) AS gradeavg,
                               reports.group_id AS rgroup,
                               assessments.group_id AS agroup,
