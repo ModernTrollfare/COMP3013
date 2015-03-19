@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Mar 19, 2015 at 03:04 PM
+-- Generation Time: Mar 19, 2015 at 04:27 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -57,7 +57,9 @@ CREATE TABLE `assessments` (
 
 INSERT INTO `assessments` (`assessment_id`, `report_id`, `group_id`, `grade`, `comments`) VALUES
 (0, 0, 1, 10, ''),
-(1, 1, 0, 12, '');
+(1, 1, 0, 12, ''),
+(2, 0, 4, 30, 'nothing'),
+(3, 1, 2, 55, '');
 
 -- --------------------------------------------------------
 
@@ -102,6 +104,13 @@ CREATE TABLE `forum` (
   `student_id` int(9) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `forum`
+--
+
+INSERT INTO `forum` (`thread_id`, `parentThread`, `title`, `message`, `posttime`, `lastreplytime`, `student_id`) VALUES
+(0, 0, 'GROUP FIRST THREAD!!', 'HELLO WORLD', '2015-03-19 14:25:36', '2015-03-19 14:25:36', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -136,6 +145,7 @@ CREATE TABLE `reports` (
   `report_id` int(9) NOT NULL,
   `text` text COLLATE ascii_bin NOT NULL,
   `xml_file` longblob,
+  `over_grade` double DEFAULT NULL,
   `group_id` int(9) NOT NULL,
   `last_modified` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_bin;
@@ -144,10 +154,10 @@ CREATE TABLE `reports` (
 -- Dumping data for table `reports`
 --
 
-INSERT INTO `reports` (`report_id`, `text`, `xml_file`, `group_id`, `last_modified`) VALUES
-(0, 'this is a test report for group 0', 0x75706c6f6164732f333536613139326237393133623034633534353734643138633238643436653633393534323861626d6574612e786d6c, 0, '2015-03-13'),
-(1, 'this is a test report for group 1', 0x75706c6f6164732f616333343738643639613363383166613632653630663563333639363136356134653565366163346d6574612e786d6c, 1, '2015-03-13'),
-(2, 'this is a test report for group 1', 0x75706c6f6164732f633164666439366565613863633262363237383532373562636133386163323631323536653237386d6574612e786d6c, 2, '2015-03-13');
+INSERT INTO `reports` (`report_id`, `text`, `xml_file`, `over_grade`, `group_id`, `last_modified`) VALUES
+(0, 'this is a test report for group 0', 0x75706c6f6164732f333536613139326237393133623034633534353734643138633238643436653633393534323861626d6574612e786d6c, NULL, 0, '2015-03-13'),
+(1, 'this is a test report for group 1', 0x75706c6f6164732f616333343738643639613363383166613632653630663563333639363136356134653565366163346d6574612e786d6c, NULL, 1, '2015-03-13'),
+(2, 'this is a test report for group 2', 0x75706c6f6164732f633164666439366565613863633262363237383532373562636133386163323631323536653237386d6574612e786d6c, NULL, 2, '2015-03-13');
 
 -- --------------------------------------------------------
 
@@ -245,8 +255,8 @@ MODIFY `thread_id` int(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- Constraints for table `assessments`
 --
 ALTER TABLE `assessments`
-ADD CONSTRAINT `assessments_ibfk_1` FOREIGN KEY (`report_id`) REFERENCES `reports` (`report_id`),
-ADD CONSTRAINT `assessments_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `reports` (`group_id`);
+ADD CONSTRAINT `assessments_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`),
+ADD CONSTRAINT `assessments_ibfk_1` FOREIGN KEY (`report_id`) REFERENCES `reports` (`report_id`);
 
 --
 -- Constraints for table `assignations`
