@@ -133,8 +133,11 @@
                       $i = "name";
                       break;
               }
+              $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
               $q = mysqli_real_escape_string($connection,$_POST['query']);
-            $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
+            if($_POST['querytype'] == 1){
+              $results = mysqli_query($connection,"SELECT * FROM STUDENTS,GROUPS WHERE (GROUPS.student_1 = STUDENTS.student_ID OR GROUPS.student_2 = STUDENTS.student_ID  OR GROUPS.student_3 = STUDENTS.student_ID ) AND GROUPS.group_id LIKE '%$q%' ");
+            }else
             $results = mysqli_query($connection,"SELECT * FROM STUDENTS WHERE $i LIKE '%$q%'");
             if(mysqli_num_rows($results)== 0){
               echo '<p><b><i>SORRY, THERE ARE NO ENTRIES MATCHING YOUR QUERY.</b></i></p>';

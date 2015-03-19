@@ -25,7 +25,10 @@
 		}
 		exit;
 	}
+	//var_dump($oldpw);
 	$oldpw = sha1(md5($oldpw));
+	$oldpw = sha1(md5($oldpw));
+	
 	if($_SESSION['usertype'] == "0")
 		$query = "SELECT admin_id FROM ADMINS WHERE admin_id ='$uid' AND pwd = '$oldpw'";
 		//$query = "SELECT userid, username FROM tuser WHERE username = '$user_username' AND password = SHA('$user_password')";
@@ -52,6 +55,7 @@
  //    var_dump($_SESSION['errors']);
  //    echo '</pre>';
 	// var_dump($tempuid);
+	$new1 = sha1(md5($new1));
 	$new1 = sha1(md5($new1));
 	if($_SESSION['usertype'] == "0")
 		$sql = "UPDATE ADMINS SET pwd ='$new1' WHERE admin_id = '$tempuid'";

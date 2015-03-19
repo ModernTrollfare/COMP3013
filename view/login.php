@@ -5,6 +5,7 @@
 	$user = array();
 	$user["userid"] = mysqli_real_escape_string($connection,$_POST["UserID"]);
 	$user["Password"] = mysqli_real_escape_string($connection,$_POST["Password"]);
+	//var_dump($user["Password"]);
 	$user["Password"] = sha1(md5($user["Password"]));
 	$user["usertype"] = mysqli_real_escape_string($connection,$usertype);
 	$uid = $user["userid"];

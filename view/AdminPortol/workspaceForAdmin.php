@@ -104,7 +104,7 @@
           <div class="hero-unit">
             <h1>Hi! Welcome back,<?php print($_SESSION['username'])?></h1>
             <p>This is the homepage of administrators. Start managing the platform here!</p>
-            <p><a href="http://getbootstrap.com/2.3.2/examples/fluid.php#" class="btn btn-primary btn-large">Learn more »</a></p>
+<!--             <p><a href="http://getbootstrap.com/2.3.2/examples/fluid.php#" class="btn btn-primary btn-large">Learn more »</a></p> -->
           </div>
           <div class="row-fluid">
             <div class="span4">

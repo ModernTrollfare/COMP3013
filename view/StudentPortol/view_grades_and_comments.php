@@ -121,7 +121,7 @@
 
         <div class="span9">
           <div class="hero-unit">
-            <h3>Viewing Gardes and Comments from Others</h3>
+            <h3>Viewing Grades and Comments from Others</h3>
             <p>This Page will show all the grades and comments which are given by other groups.</p>
             <?php
               $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));

@@ -44,8 +44,10 @@
 
                     // var_dump($target_file);
                     // print("\n");
-                    $title = $xml->title; // added by tins
-                    $content = $xml->content; // added by tins
+                    $title = (string)$xml->title; // added by tins
+                    $content = (string)$xml->content; // added by tins
+                    // var_dump((string)$title);
+                    // exit;
                     if(empty($title) || empty($content)){
                         $_SESSION['uperror'] = "Either your XML is not in the correct format, or your title or content is empty. Please check.";
                         
@@ -71,7 +73,9 @@
                     if ($docmode == 1) // added by tins
                         $query = "INSERT INTO REPORTS (report_id,group_id,text,last_modified) VALUES ('$nrid','$gid','$contents','$date');";
                     if ($docmode == 0) // added by tins
-                        $query = "INSERT INTO REPORTS (report_id, group_id, xml_file, last_modified, xml_title, xml_content) VALUES ('$maxid', '$gid', '$target_file', '$date', '$title', '$content');"; // added by tins
+                        $query = "INSERT INTO REPORTS (report_id, group_id, xml_file, last_modified, xml_title, xml_content) VALUES ('$nrid', '$gid', '$target_file', '$date', '$title', '$content');"; // added by tins
+                    // var_dump($query);
+                    // exit;
                 }
                 else{
 
@@ -80,9 +84,11 @@
                     // print("\n");
                     // exit;
                     if ($docmode == 1) // added by tins
-                        $query = "UPDATE REPORTS SET text = '$target_file', last_modified = '$date' WHERE group_id = '$gid'";
+                        $query = "UPDATE REPORTS SET text = '$contents', last_modified = '$date', xml_file =NULL WHERE group_id = '$gid'";
                     if ($docmode == 0) // added by tins
                         $query = "UPDATE REPORTS SET xml_file = '$target_file' , last_modified = '$date' , xml_title = '$title' , xml_content = '$content', text = NULL WHERE group_id = '$gid'"; // added by tins
+                    // var_dump($query);
+                    // exit;
                 }
                 $result = mysqli_query($connection, $query) or die('Error' . mysqli_error($connection));
             $_SESSION['uperror'] = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";

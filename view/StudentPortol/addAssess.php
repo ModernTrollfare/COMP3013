@@ -98,12 +98,12 @@
             <ul class="nav nav-list">
               <li><a href="student_main.php">Main Page</a></li>
               <li class="nav-header">Assignments</li>
-              <li class="active"><a href="upload_assignment.php">Uploading Assignments</a></li>
+              <li><a href="upload_assignment.php">Uploading Assignments</a></li>
               <li><a href="student_rank.php">Ranking</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li> -->
               <li class="nav-header">Assessments</li>
-              <li><a href="view_allocated_assignments.php">Assessing other groups</a></li>
+              <li class="active"><a href="view_allocated_assignments.php">Assessing other groups</a></li>
               <li><a href="view_grades_and_comments.php">Viewing Grades and Comments from Others</a></li>
               <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
@@ -162,7 +162,9 @@
                             //$report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$groupID'");
                             $report = mysqli_query($connection,$query);
                             if(mysqli_num_rows($report) != 0){  
-                              while($row = mysqli_fetch_assoc($report)){              
+                              while($row = mysqli_fetch_assoc($report)){ 
+                              $agid = $row['group_to_be_assessed'];
+                              if(mysqli_num_rows(mysqli_query($connection,"SELECT * from REPORTS where group_id = '$agid'")) != 0)             
                                 echo '<option value="'.$row['group_to_be_assessed'].'">'.$row['group_to_be_assessed'].'</option>';
                               }
                             }else{

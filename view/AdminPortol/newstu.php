@@ -12,6 +12,7 @@
 		$newid = 0;
 	$_SESSION['realpw'] = $randpw;
 	$randpw = sha1(md5($randpw));
+	$randpw = sha1(md5($randpw));
 	$query = "INSERT INTO STUDENTS (student_id,name,pwd) VALUES ('$newid','$name','$randpw');";
 	$result = mysqli_query($connection,$query) or die('Error making select users query' . mysqli_error($connection));
 	header('Location: RegisterStudentDone.php')

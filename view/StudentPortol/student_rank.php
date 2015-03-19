@@ -122,7 +122,7 @@
         <div class="span9">
           <div class="hero-unit">
             <h3>Rankings (By aggregated Marks)</h3>
-              <p> Students can only see the rankings of themselves and the groups they already assessed.</p> 
+              <p> Students can only see the rankings of themselves and the groups which assessed them.</p> 
                 <?php 
                   if (isset($_SESSION['errors'])){
                     // echo '<font color= "#FF0000">';
@@ -155,8 +155,7 @@
               $gid = $tmp['group_id'];
                             $query ="SELECT SUM(ASSessments.grade) AS gradesum,
                               AVG(assessments.grade) AS gradeavg,
-                              reports.group_id AS rgroup,
-                              assessments.group_id AS agroup
+                              reports.group_id AS rgroup
                       FROM ASSESSMENTS,REPORTS 
                       WHERE assessments.report_id = reports.report_id 
                       GROUP BY assessments.report_id 
@@ -164,20 +163,36 @@
               $result = mysqli_query($connection, $query)
                 or die('Error Query'.mysqli_error($connection));
                 $i = 1;
+              $query2 = "SELECT assessments.group_id AS agid from ASSessments,REPORTS where Assessments.report_id = reports.report_id AND reports.group_id='$gid'";
+               $result2 = mysqli_query($connection,$query2) or die ("ERROR");
+              $agrp = array();
+              while($row = $result2->fetch_assoc())
+                $agrp[] = $row;
+              // var_dump($agrp);
+              // exit;
               while ($row = mysqli_fetch_assoc($result)) {
-                if(($row['rgroup'] == $gid)||($row['agroup'] == $gid)){
-                if($row['rgroup'] == $gid){
-                  echo '<tr style="background-color:#5555AA"><td>'.$i.'</td>';
+                $flag = false;
+                if($row['rgroup'] != $gid){
+                  for($j = 0; $j < 500; $j += 1){
+                    if($agrp[$j]["agid"] == $row['agid']){
+                      $flag = TRUE;
+                      break;
+                    }
+                  }
                 }
-                else{
+                if($row['rgroup'] == $gid){
+                  echo '<tr style="background-color:#00FFFF"><td>'.$i.'</td>';
+                  $flag = TRUE;
+                }
+                else if ($flag){
                   echo '<tr><td>'.$i.'</td>';
                 }
+                if($flag)
                 echo'
                             <td>'.$row["rgroup"].'</td>
                             <td>'.$row["gradesum"].'</td>
                             <td>'.$row["gradeavg"].'</td>
                           </tr>';
-                }
                 $i += 1;
               };
             mysqli_close($connection);

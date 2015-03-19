@@ -144,11 +144,12 @@
                             //$query = "SELECT group_to_be_assessed FROM ASSIGNATIONS WHERE group_assessing = '$owngrp'";
                             $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$currentgrp'");
                             //$report = mysqli_query($connection,$query);
-                            if(mysqli_num_rows($report) != 0){  
+                            // if(mysqli_num_rows($report) != 0){  
                                 echo '<option value="'.$row['group_id'].'">'.$row['group_id'].'</option>';
-                            }else{
-                              echo '<option>No Group Avaliable</option>';
-                            }
+                             //}
+                             //else{
+                            //   echo '<option>No Group Avaliable</option>';
+                            // }
                           }//end if
                         }//end while
                       ?>
@@ -180,13 +181,13 @@
                           }
                           if($nos == 3){
                             //$query = "SELECT group_to_be_assessed FROM ASSIGNATIONS WHERE group_assessing = '$owngrp'";
-                            $report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$currentgrp'");
+                            //$report = mysqli_query($connection,"SELECT report_id FROM REPORTS WHERE group_id = '$currentgrp'");
                             //$report = mysqli_query($connection,$query);
-                            if(mysqli_num_rows($report) != 0){  
+                            //if(mysqli_num_rows($report) != 0){  
                                 echo '<option value="'.$row['group_id'].'">'.$row['group_id'].'</option>';
-                            }else{
-                              echo '<option>No Group Avaliable</option>';
-                            }
+                            // }else{
+                            //   echo '<option>No Group Avaliable</option>';
+                            // }
                           }//end if
                         }//end while
                       ?>

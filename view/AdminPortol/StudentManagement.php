@@ -118,7 +118,7 @@
                     <option value="1">Group ID</option>
                     <option value="2">Student Name</option>                  
                   </select>
-                  <input class="input-medium search-query" type="text" placeholder="" name="query" required="" autofocus="">
+                  <input class="input-medium search-query" type="text" placeholder="" name="query" required="" autofocus=""></input>
                   <button type="submit" class="btn">Search</button>
                   </div>
                 </div>

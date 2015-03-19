@@ -20,7 +20,7 @@
 		$query = "SELECT MAX(assessment_id) AS max FROM ASSESSMENTS";
 		$result = mysqli_fetch_assoc(mysqli_query($connection,$query));
 		$nid = $result['max']+1;
-		$query = "INSERT INTO ASSESSMENTS (assessment_id,grade,comments) VALUES ('$nid','$grade','$cm');";
+		$query = "INSERT INTO ASSESSMENTS (assessment_id,grade,comments,group_id,report_id) VALUES ('$nid','$grade','$cm','$owngroup','$rid');";
 	}
 	$result = mysqli_query($connection,$query) or die("ERROR inserting".$query.mysqli_error($connection));
 	mysqli_close($connection);

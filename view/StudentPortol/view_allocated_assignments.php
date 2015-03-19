@@ -169,6 +169,8 @@
                 $groupid_checking = $row['group_id'];
                 if(mysqli_num_rows($report) != 0){ 
                   if (mysqli_fetch_assoc(mysqli_query($connection, "SELECT * FROM ASSIGNATIONS WHERE group_to_be_assessed = '$groupid_checking' AND group_assessing = '$owngrp';"))) {
+                              if(mysqli_num_rows(mysqli_query($connection,"SELECT * from REPORTS where group_id = '$groupid_checking'")) != 0)   
+                    
                     echo '<option value="'.$groupid_checking.'">'.$groupid_checking.'</option>';
                   }
                 }
@@ -193,8 +195,8 @@
               </thead>
             <?php
                   $row = mysqli_fetch_assoc($result);
-                  $hashaid = sha1(md5($row['Assessment_id']));
               while ($row != NULL) {
+                  $hashaid = sha1(md5($row['Assessment_id']));
                 echo '<tr><td>'.$row["group_id"].'</td>
                             <td>'.$row["grade"].'</td>
                             <td><a href="view_each_allocated_assignments.php?aid='.$hashaid.'" class="btn">View Full Comments</a></td>

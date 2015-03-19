@@ -133,9 +133,25 @@
             $temp = mysqli_fetch_assoc($result);           
             if($temp!=0){  
               echo '<p>Last Upload Date: '.$temp['last_modified']."</p>";            
-              echo '<a href="../'.$temp['xml_file'].'" class="btn"> View Assignment File</a>';
-            }else{
-              echo '<p>Last Upload Date: No File Uploaded</p>';  
+              
+            $query = "SELECT * FROM REPORTS WHERE group_id = '$test'";
+            $result = mysqli_query($connection, $query)or die('Error Query'.mysqli_error($connection));
+            $temp = mysqli_fetch_assoc($result);
+            if(is_null($filepath = $temp['xml_file'])){
+              print("The report is a text file(.txt).\n");
+              echo '<br></br>';
+              print("Contents: \n".$temp['text']."\n");
+              echo '<br></br>';
+            }
+            else{
+              print("The report is a XML file(.xml).\n");
+              echo '<br></br>';
+              print("Title: ".$temp['xml_title']."\n");
+              echo '<br></br>';
+              print("Contents: ".$temp['xml_content']."\n");
+              echo '<br></br>';
+              echo '<a class="btn" href="../'.$filepath.'">Click to download file</a><br></br>';
+            }
             }
           ?>
           </div>
