@@ -111,7 +111,7 @@
         <div class="span9">
           <div class="hero-unit">
             <?php
-                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+                $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysqli server.'. mysqli_error($connection));
                 $gid = $_GET['gid'];
                 $flag = 1;
                 $test = 0;

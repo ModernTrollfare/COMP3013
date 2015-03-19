@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+	$connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysql server.'. mysqli_error($connection));
 	$agrp = mysqli_real_escape_string($connection,$_POST['assessedgrp']);
 	$query = "SELECT report_id FROM REPORTS WHERE group_id = '$agrp'";
 	$result = mysqli_query($connection,$query);

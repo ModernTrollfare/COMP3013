@@ -125,7 +125,7 @@
             for($test = 0;$test<500; $test+=1){
               $hashaid = sha1(md5($test));
               if($hashaid == $_GET['aid']){
-                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysql server.'. mysqli_error($connection));
                 $query = "SELECT ASSESSMENTS.comments,REPORTS.group_id FROM REPORTS,Assessments WHERE Assessments.assessment_id='$test' AND reports.report_id = Assessments.report_id";
                 $result = mysqli_fetch_assoc(mysqli_query($connection,$query));
                 echo '<h3>Comments to group '.$result['group_id'].'</h3>

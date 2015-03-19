@@ -138,7 +138,7 @@
           <?php
           function presults($result){
                   while($myrow = mysqli_fetch_assoc($result)){
-             $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+             $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysqli server.'. mysqli_error($connection));
                     echo '<td><a href="viewThread.php?tid='.$myrow['thread_id'].'">'.$myrow['title'].'</a></td>';
                     $opid = $myrow['student_id'];
                     $opname = mysqli_fetch_assoc(mysqli_query($connection,"SELECT name from STUDENTS where student_id = '$opid'"))['name'];
@@ -149,7 +149,7 @@
                     echo '<td>'.$replies.'</td></tr><tr>';
                   }
           }
-             $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+             $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysqli server.'. mysqli_error($connection));
              switch ($_POST['querytype']) {
                   case 0:
                       $i = "title";                                

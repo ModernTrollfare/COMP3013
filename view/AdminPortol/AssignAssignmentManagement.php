@@ -119,7 +119,7 @@
  -->             <p> <label for="group_be_viewed" class="sr-only" >Group Assessed</label>
                     <select class="span2" name="group_be_viewed" id="group_be_viewed">
                       <?php
-                        $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                        $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysql server.'. mysqli_error($connection));
                     
                         $results = mysqli_query($connection,"SELECT * FROM GROUPS");
                         while($row = mysqli_fetch_assoc($results)) {                          
@@ -158,7 +158,7 @@
                       <select class="span2" name="group_be_assigned" id="group_be_assigned">
 
                       <?php
-                        $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                        $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysql server.'. mysqli_error($connection));
                     
                         $results = mysqli_query($connection,"SELECT * FROM GROUPS");
                         while($row = mysqli_fetch_assoc($results)) {                          
@@ -209,7 +209,7 @@
               </thead>
               <tbody>
                 <?php
-                    $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
+                    $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
                                      
                     $results = mysqli_query($connection,"SELECT * FROM ASSIGNATIONS ORDER BY group_assessing ASC");
                     while($row = mysqli_fetch_assoc($results)) {

@@ -104,7 +104,7 @@
           <div class="container">
               <h2 class="form-signin-heading">Registered Student Details</h2>
               <?php
-                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+                $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to MySQL server.'. mysqli_error($connection));
                 $query = "SELECT * FROM STUDENTS WHERE student_id =(SELECT MAX(student_id) from STUDENTS)";
                 $result = mysqli_query($connection,$query) or die('Error making select users query' . mysqli_error($connection));;
                 $myrow = mysqli_fetch_assoc($result);

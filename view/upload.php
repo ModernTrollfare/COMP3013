@@ -29,7 +29,7 @@
     }
     if ($fail){
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+            $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to MySQL server.'. mysqli_error($connection));
                 $userid = $_SESSION['userid'];
                 $date = date('Y-m-d H:i:s');
                 $query = "SELECT group_id FROM groups WHERE student_1 = '$userid' OR student_2 = '$userid' OR student_3 = '$userid'";
@@ -98,4 +98,5 @@
         }
     }
         header('Location: StudentPortol/upload_assignment.php');
+        
 ?>

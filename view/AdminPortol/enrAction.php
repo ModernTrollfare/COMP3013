@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
+	$connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
 	$grpid = mysqli_real_escape_string($connection,$_POST['grpid']);
 	$results = mysqli_query($connection,"SELECT * FROM GROUPS WHERE group_id = '$grpid'");
 	if(mysqli_num_rows($results)== 0){

@@ -131,7 +131,7 @@
                   }
                   unset($_SESSION['errors']);
                   $tid = $_GET['tid'];
-                  $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
+                  $connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to mysqli server.'. mysqli_error($connection));
                   $stuid = $_SESSION['userid'];
                   $query = "SELECT * FROM FORUM WHERE thread_id = '$tid' ORDER BY thread_id ASC";
                   $opname = mysqli_fetch_assoc(mysqli_query($connection,"SELECT name from STUDENTS where student_id = '$stuid'"))['name'];

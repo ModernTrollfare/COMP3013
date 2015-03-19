@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+	$connection = mysqli_connect('eu-cdbr-azure-west-a.cloudapp.net','b94aada7921f78','cf9ed572','peerassakprqvuge') or die('Error connecting to MySQL server.'. mysqli_error($connection));
 	$randpw = substr(str_shuffle(MD5(microtime())), 0, 10);
 	$name = mysqli_real_escape_string($connection,$_POST['inputName']);
 	$query = "SELECT MAX(student_id) FROM STUDENTS";
