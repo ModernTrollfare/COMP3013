@@ -13,7 +13,7 @@
 <!-- saved from url=(0049)http://getbootstrap.com/2.3.2/examples/fluid.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>View Groups</title>
+    <title>Add or Remove Groups</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -83,7 +83,7 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="active"><a href="workspaceForAdmin.php">Main Page</a>
+              <li><a href="workspaceForAdmin.php">Main Page</a>
               <li class="nav-header">Student</li>
               <li ><a href="StudentManagement.php">View Students</a></li>
               <li><a href="RegisterStudent.php">Register New Student</a></li>
@@ -158,7 +158,7 @@
       <hr>
 
       <footer>
-        <p>© Company 2013</p>
+        <p>&copy; Peer Assessment System</p>
       </footer>
 
     </div><!--/.fluid-container-->

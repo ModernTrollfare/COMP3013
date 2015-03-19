@@ -136,7 +136,7 @@
       <hr>
 
       <footer>
-        <p>Peer Assessment System</p>
+        <p>&copy; Peer Assessment System</p>
       </footer>
 
     </div><!--/.fluid-container-->

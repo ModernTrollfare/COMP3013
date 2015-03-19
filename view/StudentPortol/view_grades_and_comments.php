@@ -118,7 +118,7 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        </div><!--/span-->
+
         <div class="span9">
           <div class="hero-unit">
             <h3>Viewing Gardes and Comments from Others</h3>
@@ -169,6 +169,9 @@
           </div>
         </div>
         </div><!--/span-->
+        
+        </div><!--/span-->
+        
       </div><!--/row-->
 
       <hr>

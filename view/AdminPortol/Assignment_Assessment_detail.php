@@ -176,7 +176,7 @@
       <hr>
 
       <footer>
-        <p>© Company 2013</p>
+        <p>&copy; Peer Assessment System</p>
       </footer>
 
     </div><!--/.fluid-container-->
