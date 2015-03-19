@@ -140,7 +140,7 @@
                 </tr>
               </thead>
             <?php
-              $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+              $connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
               $stuid = $_SESSION['userid'];
               $query = "SELECT * FROM GROUPS WHERE student_1 = '$stuid' OR student_2 = '$stuid' OR student_3 = '$stuid'";
               $result = mysqli_query($connection, $query)
@@ -153,7 +153,7 @@
                       FROM ASSESSMENTS,REPORTS 
                       WHERE assessments.report_id = reports.report_id 
                       GROUP BY assessments.report_id 
-                      ORDER BY SUM(ASSessments.grade) ASC";
+                      ORDER BY SUM(ASSessments.grade) DESC";
               $result = mysqli_query($connection, $query)
                 or die('Error Query'.mysqli_error($connection));
                 $i = 1;

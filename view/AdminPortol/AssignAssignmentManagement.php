@@ -119,7 +119,7 @@
  -->             <p> <label for="group_be_viewed" class="sr-only" >Group Assessed</label>
                     <select class="span2" name="group_be_viewed" id="group_be_viewed">
                       <?php
-                        $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                        $connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
                     
                         $results = mysqli_query($connection,"SELECT * FROM GROUPS");
                         while($row = mysqli_fetch_assoc($results)) {                          
@@ -157,7 +157,7 @@
                       <select class="span2" name="group_be_assigned" id="group_be_assigned">
 
                       <?php
-                        $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                        $connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
                     
                         $results = mysqli_query($connection,"SELECT * FROM GROUPS");
                         while($row = mysqli_fetch_assoc($results)) {                          

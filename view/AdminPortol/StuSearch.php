@@ -134,7 +134,7 @@
                       break;
               }
               $q = mysqli_real_escape_string($connection,$_POST['query']);
-            $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
+            $connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
             $results = mysqli_query($connection,"SELECT * FROM STUDENTS WHERE $i LIKE '%$q%'");
             if(mysqli_num_rows($results)== 0){
               echo '<p><b><i>SORRY, THERE ARE NO ENTRIES MATCHING YOUR QUERY.</b></i></p>';

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
+	$connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
 	$group_be_viewed = mysqli_real_escape_string($connection,$_POST['group_be_viewed']);
 	$group_be_assigned =mysqli_real_escape_string($connection, $_POST['group_be_assigned']);
 

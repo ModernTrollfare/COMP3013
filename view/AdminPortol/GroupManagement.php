@@ -115,7 +115,7 @@
               </thead>
               <tbody>
                 <?php
-                    $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqlii_error($connection));                    
+                    $connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));                   
                     $results = mysqli_query($connection,"SELECT * FROM GROUPS");
                     while($row = mysqli_fetch_assoc($results)) {
                       $student1 = $row['student_1'];

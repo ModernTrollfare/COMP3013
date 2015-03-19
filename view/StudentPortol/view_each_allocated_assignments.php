@@ -125,7 +125,7 @@
             for($test = 0;$test<500; $test+=1){
               $hashaid = sha1(md5($test));
               if($hashaid == $_GET['aid']){
-                $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysql server.'. mysqli_error($connection));
+                $connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
                 $query = "SELECT comments FROM Assessments WHERE assessment_id='$test'";
                 $result = mysqli_fetch_assoc(mysqli_query($connection,$query));
                 echo '<h3>Comments to group '.$test.'</h3>

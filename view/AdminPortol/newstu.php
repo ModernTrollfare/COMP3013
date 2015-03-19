@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+	$connection = mysqli_connect('reqnmfsycv.database.windows.net:1433','toor','rooT1234','comp3013') or die('Error connecting to mysqli server.'. mysqli_error($connection));
 	$randpw = substr(str_shuffle(MD5(microtime())), 0, 10);
 	$name = mysqli_real_escape_string($connection,$_POST['inputName']);
 	$query = "SELECT MAX(student_id) FROM STUDENTS";
