@@ -131,14 +131,27 @@
            	echo 'You are not supposed to be here. Please go back to the previous page.';
            	exit;
            }
-	$fetch = $_POST['fetchid'];
-	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
-	$query = "SELECT xml_file from REPORTS where group_id = '$fetch'";
-	$result = mysqli_query($connection,$query);
-	$temp = mysqli_fetch_assoc($result);
-	$filepath = $temp['xml_file'];
-	echo '<button class="btn" href="../'.$filepath.'">Click to get file</button><br></br>';
-	echo '<button class="btn" href="view_allocated_assignments.php">Back to Assessments</button>';
+          	$fetch = $_POST['fetchid'];
+          	$connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to MySQL server.'. mysqli_error($connection));
+          	$query = "SELECT * from REPORTS where group_id = '$fetch'";
+          	$result = mysqli_query($connection,$query);
+          	$temp = mysqli_fetch_assoc($result);
+          	if(is_null($filepath = $temp['xml_file'])){
+              print("The report is a text file(.txt).\n");
+              echo '<br></br>';
+              print("Contents: \n".$temp['text']."\n");
+              echo '<br></br>';
+            }
+            else{
+              print("The report is a XML file(.xml).\n");
+              echo '<br></br>';
+              print("Title: ".$temp['xml_title']."\n");
+              echo '<br></br>';
+              print("Contents: ".$temp['xml_content']."\n");
+              echo '<br></br>';
+              echo '<a class="btn" href="../'.$filepath.'">Click to download file</a><br></br>';
+            }
+	echo '<a class="btn" href="view_allocated_assignments.php">Back to Assessments</a>';
 ?>
         </div><!--/span-->
       </div><!--/row-->
@@ -170,5 +183,3 @@
 
   </body>
 </html>
-Status API Training Shop Blog About
-© 2015 GitHub, Inc. Terms Privacy Security Contact

@@ -142,9 +142,11 @@
             }
             unset($_SESSION['uperror']);
             echo '<p>Please select the file from your machine, then press "Upload".Note that your newest submissions will overwrite previous ones.</p>
-            <p>The accepted file types are .txt,.xml,.pdf. The size should be less than 10MB.</p>
+            <p>The accepted file types are .txt,.xml. The size should be less than 10MB.</p>
+            <p>If you are handing in XML files, please use <a href="template.xml">THIS TEMPLATE</a>.
+            Any xml files not in this format will not be accepted, and students will have to bear the consequences.</p>
             <form action="../upload.php" method="post" enctype="multipart/form-data">
-                Select image to upload:
+                Select file to upload:
                 <input type="file" name="fileToUpload" id="fileToUpload" required="">
                 <input type="submit" class="btn" value="Upload" name="submit">
             </form>';
@@ -156,7 +158,7 @@
             <h3>Your Last Upload Record:</h3>';
             $myrow = mysqli_fetch_assoc($result);
             $gid = $myrow['group_id'];
-            $query = "SELECT last_modified ,xml_file FROM REPORTS WHERE group_id = '$gid'";
+            $query = "SELECT * FROM REPORTS WHERE group_id = '$gid'";
             $result = mysqli_query($connection, $query)
               or die('Error Query'.mysqli_error($connection));
             if(mysqli_num_rows($result)==0){
@@ -165,7 +167,21 @@
             else{
             $temp = mysqli_fetch_assoc($result);
               echo '<p>Last Upload Date: '.$temp['last_modified']."</p>";
-              echo '<a href="../'.$temp['xml_file'].'" class="btn"> View Your Last Assignment File</a>';
+            if(is_null($filepath = $temp['xml_file'])){
+              print("The report is a text file(.txt).\n");
+              echo '<br></br>';
+              print("Contents: \n".$temp['text']."\n");
+              echo '<br></br>';
+            }
+            else{
+              print("The report is a XML file(.xml).\n");
+              echo '<br></br>';
+              print("Title: ".$temp['xml_title']."\n");
+              echo '<br></br>';
+              print("Contents: ".$temp['xml_content']."\n");
+              echo '<br></br>';
+              echo '<a class="btn" href="../'.$filepath.'">Click to download file</a><br></br>';
+            }
             }
           echo'  <!-- <p><a href="#" class="btn btn-primary btn-large">Upload </a></p> -->
           </div>';

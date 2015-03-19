@@ -175,7 +175,7 @@
               }
             }
           ?>
-        </select></form><button type="submit" class="btn">Fetch Report</button></div>
+        </select><br></br><button type="submit" class="btn">Fetch Report</button></form></div>
             <?php
               $gid = $owngrp;
               $query = "SELECT REPORTS.group_id, ASSESSMENTS.comments, ASSESSMENTS.grade,Assessments.Assessment_id FROM ASSESSMENTS, REPORTS WHERE ASSESSMENTS.report_id = REPORTS.report_id AND ASSESSMENTS.group_id ='$gid'";

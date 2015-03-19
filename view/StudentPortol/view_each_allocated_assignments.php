@@ -118,7 +118,6 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
 
