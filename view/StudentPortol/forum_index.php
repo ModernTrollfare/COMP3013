@@ -137,9 +137,13 @@
                 <?php
                   $connection = mysqli_connect('localhost','toor','toor','comp3013') or die('Error connecting to mysqli server.'. mysqlii_error($connection));
                   $stuid = $_SESSION['userid'];
-                  $query = "SELECT group_id FROM GROUPS WHERE student_1 = '$stuid' OR student_2 = '$stuid' OR student_3 = '$stuid'";
+                  $query = "SELECT * FROM GROUPS WHERE student_1 = '$stuid' OR student_2 = '$stuid' OR student_3 = '$stuid'";
                   $result = mysqli_query($connection,$query);
-                  $gid = mysqli_fetch_assoc($result)['group_id'];
+                  $groupentry = mysqli_fetch_assoc($result);
+                  $gid = $groupentry['group_id'];
+                  $stu1 = $groupentry['student_1'];
+                  $stu2 = $groupentry['student_2'];
+                  $stu3 = $groupentry['student_3'];
                   if(is_null($gid)){
                     echo '<td>You are not in a group. Please contact your administrator/teacher.</td>';
                     exit;
@@ -172,7 +176,7 @@
                 </tr>
                 <tr>';
                   $query = "SELECT * FROM FORUM 
-                            WHERE group_id ='$gid'
+                            WHERE student_id IN ('$stu1','$stu2','$stu3')
                             AND parentThread = 0 ORDER BY lastreplytime DESC";
                   $result = mysqli_query($connection,$query);
                   while($myrow = mysqli_fetch_assoc($result)){
